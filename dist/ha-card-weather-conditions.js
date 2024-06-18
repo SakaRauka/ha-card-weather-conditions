@@ -1,39 +1,36 @@
-'use strict';
+(function (exports, litElement, cssTag_js, litHtml) {
+    'use strict';
 
-var litElement = require('lit-element');
-var cssTag_js = require('lit-element/lib/css-tag.js');
-var litHtml = require('lit-html');
+    /******************************************************************************
+    Copyright (c) Microsoft Corporation.
 
-/******************************************************************************
-Copyright (c) Microsoft Corporation.
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
 
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol */
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+    ***************************************************************************** */
+    /* global Reflect, Promise, SuppressedError, Symbol */
 
 
-function __decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-}
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
 
-typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-    var e = new Error(message);
-    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
-};
+    typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+        var e = new Error(message);
+        return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+    };
 
-const style = litElement.css `
+    const style = litElement.css `
   ha-card {
     cursor: pointer;
     position: relative;
@@ -91,7 +88,7 @@ const style = litElement.css `
       
 `;
 
-const styleSummary = litElement.css `
+    const styleSummary = litElement.css `
   .current {
     padding-top: 1.2em;
     margin-bottom: 3.5em;
@@ -148,7 +145,7 @@ const styleSummary = litElement.css `
      
 `;
 
-const styleMeter = litElement.css `
+    const styleMeter = litElement.css `
   .meter {
     background: #efefef; /* Grigio */
     border-radius: 8px;
@@ -206,7 +203,7 @@ const styleMeter = litElement.css `
 
 `;
 
-const styleForecast = litElement.css `
+    const styleForecast = litElement.css `
   .day {
     flex: 1;
     display: block;
@@ -249,7 +246,7 @@ const styleForecast = litElement.css `
   }  
 `;
 
-const styleCamera = litElement.css `
+    const styleCamera = litElement.css `
       .camera-container {
         margin-top: 10px;
         height: 100%;
@@ -275,7 +272,7 @@ const styleCamera = litElement.css `
       }
 `;
 
-const styleNightAndDay = litElement.css `
+    const styleNightAndDay = litElement.css `
   .nd-container {
     margin: auto;
     padding-top: 1.3em;
@@ -309,8 +306,8 @@ const styleNightAndDay = litElement.css `
 // }
 `;
 
-const getSeaStyle = (path) => {
-    return `
+    const getSeaStyle = (path) => {
+        return `
   
   
 .synoptic {
@@ -640,416 +637,416 @@ table.synoptic td {
     background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI1MHB4IiBoZWlnaHQ9IjUwcHgiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTAgNTAiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnIGlkPSJMYXllcl8yIj48Y2lyY2xlIGZpbGwtb3BhY2l0eT0iMCIgY3g9IjI0Ljk5IiBjeT0iMjQuOTQ2IiByPSIyNC45NDYiLz48L2c+PGcgaWQ9IkxheWVyXzFfMV8iPjxwb2x5Z29uIGZpbGw9IiMxQTFBMUEiIHBvaW50cz0iMzkuOTYxLDUuMDA4IDI0Ljk2OSw0OS44OTMgMTAuMDM3LDUuMDA4IDI1LjAzOCwxMS4yNDIgIi8+PC9nPjwvc3ZnPg==")
 }
 `;
-};
+    };
 
-const cwcClimacellDayIcons = {
-    freezing_rain_heavy: "rainy-3",
-    "heavy freezing rain": "rainy-3",
-    freezing_rain: "rainy-2",
-    "freezing rain": "rainy-2",
-    freezing_rain_light: "rainy-1",
-    "light freezing rain": "rainy-1",
-    freezing_drizzle: "rain-and-sleet-mix",
-    "freezing drizzle": "rain-and-sleet-mix",
-    ice_pellets_heavy: "rain-and-snow-mix",
-    "heavy ice pellets": "rain-and-snow-mix",
-    ice_pellets: "rain-and-snow-mix",
-    "ice pellets": "rain-and-snow-mix",
-    ice_pellets_light: "rain-and-snow-mix",
-    "light ice pellets": "rain-and-snow-mix",
-    snow_heavy: "snowy-3",
-    "heavy snow": "snowy-3",
-    snow: "snowy-2",
-    snow_light: "snowy-1",
-    "light snow": "snowy-1",
-    flurries: "wind",
-    tstorm: "tropical-storm",
-    rain_heavy: "rainy-3",
-    "heavy rain": "rainy-3",
-    rain_light: "rainy-1",
-    "light rain": "rainy-1",
-    rain: "rainy-2",
-    drizzle: "rainy-1",
-    fog_light: "haze",
-    "light fog": "haze",
-    fog: "fog",
-    cloudy: "cloudy-original",
-    mostly_cloudy: "cloudy-day-3",
-    "mostly cloudy": "cloudy-day-3",
-    partly_cloudy: "cloudy-day-2",
-    "partly cloudy": "cloudy-day-2",
-    mostly_clear: "cloudy-day-1",
-    "mostly clear": "cloudy-day-1",
-    clear: "day",
-};
-const cwcClimacellNightIcons = Object.assign(Object.assign({}, cwcClimacellDayIcons), { freezing_rain_heavy: "rainy-6", "heavy freezing rain": "rainy-6", freezing_rain: "rainy-5", "freezing rain": "rainy-5", freezing_rain_light: "rainy-4", "light freezing rain": "rainy-4", 
-    // freezing_drizzle: "rain-and-sleet-mix",
-    // ice_pellets_heavy: "rain-and-snow-mix",
-    // ice_pellets: "rain-and-snow-mix",
-    // ice_pellets_light: "rain-and-snow-mix",
-    snow_heavy: "snowy-6", "heavy snow": "snowy-6", snow: "snowy-5", snow_light: "snowy-4", "light snow": "snowy-4", 
-    // flurries: "wind",
-    // tstorm: "tropical-storm",
-    rain_heavy: "rainy-6", "heavy rain": "rainy-6", rain_light: "rainy-4", "light rain": "rainy-4", rain: "rainy-5", drizzle: "rainy-4", 
-    // fog_light: "haze",
-    // fog: "fog",
-    // cloudy: "cloudy",
-    mostly_cloudy: "cloudy-night-3", "mostly cloudy": "cloudy-night-3", partly_cloudy: "cloudy-night-2", "partly cloudy": "cloudy-night-2", mostly_clear: "cloudy-night-1", "mostly clear": "cloudy-night-1", clear: "night", sunny: "night" });
+    const cwcClimacellDayIcons = {
+        freezing_rain_heavy: "rainy-3",
+        "heavy freezing rain": "rainy-3",
+        freezing_rain: "rainy-2",
+        "freezing rain": "rainy-2",
+        freezing_rain_light: "rainy-1",
+        "light freezing rain": "rainy-1",
+        freezing_drizzle: "rain-and-sleet-mix",
+        "freezing drizzle": "rain-and-sleet-mix",
+        ice_pellets_heavy: "rain-and-snow-mix",
+        "heavy ice pellets": "rain-and-snow-mix",
+        ice_pellets: "rain-and-snow-mix",
+        "ice pellets": "rain-and-snow-mix",
+        ice_pellets_light: "rain-and-snow-mix",
+        "light ice pellets": "rain-and-snow-mix",
+        snow_heavy: "snowy-3",
+        "heavy snow": "snowy-3",
+        snow: "snowy-2",
+        snow_light: "snowy-1",
+        "light snow": "snowy-1",
+        flurries: "wind",
+        tstorm: "tropical-storm",
+        rain_heavy: "rainy-3",
+        "heavy rain": "rainy-3",
+        rain_light: "rainy-1",
+        "light rain": "rainy-1",
+        rain: "rainy-2",
+        drizzle: "rainy-1",
+        fog_light: "haze",
+        "light fog": "haze",
+        fog: "fog",
+        cloudy: "cloudy-original",
+        mostly_cloudy: "cloudy-day-3",
+        "mostly cloudy": "cloudy-day-3",
+        partly_cloudy: "cloudy-day-2",
+        "partly cloudy": "cloudy-day-2",
+        mostly_clear: "cloudy-day-1",
+        "mostly clear": "cloudy-day-1",
+        clear: "day",
+    };
+    const cwcClimacellNightIcons = Object.assign(Object.assign({}, cwcClimacellDayIcons), { freezing_rain_heavy: "rainy-6", "heavy freezing rain": "rainy-6", freezing_rain: "rainy-5", "freezing rain": "rainy-5", freezing_rain_light: "rainy-4", "light freezing rain": "rainy-4", 
+        // freezing_drizzle: "rain-and-sleet-mix",
+        // ice_pellets_heavy: "rain-and-snow-mix",
+        // ice_pellets: "rain-and-snow-mix",
+        // ice_pellets_light: "rain-and-snow-mix",
+        snow_heavy: "snowy-6", "heavy snow": "snowy-6", snow: "snowy-5", snow_light: "snowy-4", "light snow": "snowy-4", 
+        // flurries: "wind",
+        // tstorm: "tropical-storm",
+        rain_heavy: "rainy-6", "heavy rain": "rainy-6", rain_light: "rainy-4", "light rain": "rainy-4", rain: "rainy-5", drizzle: "rainy-4", 
+        // fog_light: "haze",
+        // fog: "fog",
+        // cloudy: "cloudy",
+        mostly_cloudy: "cloudy-night-3", "mostly cloudy": "cloudy-night-3", partly_cloudy: "cloudy-night-2", "partly cloudy": "cloudy-night-2", mostly_clear: "cloudy-night-1", "mostly clear": "cloudy-night-1", clear: "night", sunny: "night" });
 
-const cwcDarkskyDayIcons = {
-    "clear": "day",
-    "clear-day": "day",
-    "rain": "rainy-2",
-    "snow": "snowy-2",
-    "sleet": "rain-and-sleet-mix",
-    "wind": "cloudy-day-1",
-    "fog": "fog",
-    "cloudy": "cloudy-original",
-    "partly-cloudy-day": "cloudy-day-2",
-};
-const cwcDarkskyNightIcons = Object.assign(Object.assign({}, cwcDarkskyDayIcons), { "clear": "night", "clear-night": "night", "wind": "cloudy-night-1", "partly-cloudy-day": "cloudy-night-2", "partly-cloudy-night": "cloudy-night-2" });
+    const cwcDarkskyDayIcons = {
+        "clear": "day",
+        "clear-day": "day",
+        "rain": "rainy-2",
+        "snow": "snowy-2",
+        "sleet": "rain-and-sleet-mix",
+        "wind": "cloudy-day-1",
+        "fog": "fog",
+        "cloudy": "cloudy-original",
+        "partly-cloudy-day": "cloudy-day-2",
+    };
+    const cwcDarkskyNightIcons = Object.assign(Object.assign({}, cwcDarkskyDayIcons), { "clear": "night", "clear-night": "night", "wind": "cloudy-night-1", "partly-cloudy-day": "cloudy-night-2", "partly-cloudy-night": "cloudy-night-2" });
 
-const cwcOpenWeatherMapDayIcons = {
-    "clear sky": "day",
-    "few clouds": "cloudy-day-1",
-    "scattered clouds": "cloudy-day-2",
-    "broken clouds": "cloudy-day-3",
-    "shower rain": "rainy-3",
-    "rain": "rainy-2",
-    "thunderstorm": "tropical-storm",
-    "snow": "snowy-2",
-    "mist": "fog",
-};
-const cwcOpenWeatherMapNightIcons = Object.assign(Object.assign({}, cwcOpenWeatherMapDayIcons), { "clear sky": "day-night", "few clouds": "cloudy-night-1", "scattered clouds": "cloudy-night-2", "broken clouds": "cloudy-night-3" });
+    const cwcOpenWeatherMapDayIcons = {
+        "clear sky": "day",
+        "few clouds": "cloudy-day-1",
+        "scattered clouds": "cloudy-day-2",
+        "broken clouds": "cloudy-day-3",
+        "shower rain": "rainy-3",
+        "rain": "rainy-2",
+        "thunderstorm": "tropical-storm",
+        "snow": "snowy-2",
+        "mist": "fog",
+    };
+    const cwcOpenWeatherMapNightIcons = Object.assign(Object.assign({}, cwcOpenWeatherMapDayIcons), { "clear sky": "day-night", "few clouds": "cloudy-night-1", "scattered clouds": "cloudy-night-2", "broken clouds": "cloudy-night-3" });
 
-//clear=ok, partlycloudy=ok, cloudy=ok, partlycloudy-fog=ok, partlycloudy-light-rain=ok, partlycloudy-rain=ok,
-// light-rain=ok, rainy=ok, snowy-rainy=ok, partlycloudy-light-snow=ok, partlycloudy-snow=ok, light-snow=ok, snowy=ok,
-// partlycloudy-lightning=ok or lightning
-const cwcBuienradarDayIcons = {
-    // freezing_rain_heavy: "rainy-3",
-    // freezing_rain: "rainy-2",
-    // freezing_rain_light: "rainy-1",
-    // freezing_drizzle: "rain-and-sleet-mix",
-    // ice_pellets_heavy: "rain-and-snow-mix",
-    // ice_pellets: "rain-and-snow-mix",
-    // ice_pellets_light: "rain-and-snow-mix",
-    snowy: "snowy-3",
-    "light-snow": "snowy-2",
-    "snowy-rainy": "snowy-1",
-    "partlycloudy-light-snow": "snowy-1",
-    "partlycloudy-snow": "snowy-1",
-    // flurries: "wind",
-    // tstorm: "tropical-storm",
-    // rain_heavy: "rainy-3",
-    "partlycloudy-light-rain": "rainy-1",
-    "light-rain": "rainy-1",
-    "rainy": "rainy-2",
-    "partlycloudy-rain": "rainy-1",
-    // fog_light: "haze",
-    "partlycloudy-fog": "fog",
-    cloudy: "cloudy-original",
-    // mostly_cloudy: "cloudy-day-3",
-    partlycloudy: "cloudy-day-2",
-    "partlycloudy-lightning": "cloudy-day-1",
-    lightning: "cloudy-day-1",
-    // mostly_clear: "cloudy-day-1",
-    clear: "day",
-};
-const cwcBuienradarNightIcons = Object.assign({}, cwcBuienradarDayIcons);
+    //clear=ok, partlycloudy=ok, cloudy=ok, partlycloudy-fog=ok, partlycloudy-light-rain=ok, partlycloudy-rain=ok,
+    // light-rain=ok, rainy=ok, snowy-rainy=ok, partlycloudy-light-snow=ok, partlycloudy-snow=ok, light-snow=ok, snowy=ok,
+    // partlycloudy-lightning=ok or lightning
+    const cwcBuienradarDayIcons = {
+        // freezing_rain_heavy: "rainy-3",
+        // freezing_rain: "rainy-2",
+        // freezing_rain_light: "rainy-1",
+        // freezing_drizzle: "rain-and-sleet-mix",
+        // ice_pellets_heavy: "rain-and-snow-mix",
+        // ice_pellets: "rain-and-snow-mix",
+        // ice_pellets_light: "rain-and-snow-mix",
+        snowy: "snowy-3",
+        "light-snow": "snowy-2",
+        "snowy-rainy": "snowy-1",
+        "partlycloudy-light-snow": "snowy-1",
+        "partlycloudy-snow": "snowy-1",
+        // flurries: "wind",
+        // tstorm: "tropical-storm",
+        // rain_heavy: "rainy-3",
+        "partlycloudy-light-rain": "rainy-1",
+        "light-rain": "rainy-1",
+        "rainy": "rainy-2",
+        "partlycloudy-rain": "rainy-1",
+        // fog_light: "haze",
+        "partlycloudy-fog": "fog",
+        cloudy: "cloudy-original",
+        // mostly_cloudy: "cloudy-day-3",
+        partlycloudy: "cloudy-day-2",
+        "partlycloudy-lightning": "cloudy-day-1",
+        lightning: "cloudy-day-1",
+        // mostly_clear: "cloudy-day-1",
+        clear: "day",
+    };
+    const cwcBuienradarNightIcons = Object.assign({}, cwcBuienradarDayIcons);
 
-const cwcDefaultHassDayIcons = {
-    cloudy: "cloudy-day-3",
-    exceptional: "severe-thunderstorm",
-    fog: "fog",
-    hail: "snow-and-sleet-mix",
-    lightning: "severe-thunderstorm",
-    "lightning-rainy": "scattered-thunderstorms",
-    partlycloudy: "cloudy-day-3",
-    pouring: "rainy-6",
-    rainy: "rainy-5",
-    snowy: "snowy-6",
-    "snowy-rainy": "snow-and-sleet-mix",
-    sunny: "clear-day",
-    windy: "wind",
-    "windy-variant": "wind",
-};
-const cwcDefaultHassNightIcons = Object.assign(Object.assign({}, cwcDefaultHassDayIcons), { "clear-night": "clear-night" });
+    const cwcDefaultHassDayIcons = {
+        cloudy: "cloudy-day-3",
+        exceptional: "severe-thunderstorm",
+        fog: "fog",
+        hail: "snow-and-sleet-mix",
+        lightning: "severe-thunderstorm",
+        "lightning-rainy": "scattered-thunderstorms",
+        partlycloudy: "cloudy-day-3",
+        pouring: "rainy-6",
+        rainy: "rainy-5",
+        snowy: "snowy-6",
+        "snowy-rainy": "snow-and-sleet-mix",
+        sunny: "clear-day",
+        windy: "wind",
+        "windy-variant": "wind",
+    };
+    const cwcDefaultHassNightIcons = Object.assign(Object.assign({}, cwcDefaultHassDayIcons), { "clear-night": "clear-night" });
 
-let cwcLocale = { en: 0, it: 1, nl: 2, es: 3, de: 4, fr: 5, "sr-latn": 6, pt: 7, da: 8, "no-no": 9 };
-// export let cwcLocWindDirections = {
-//   'N': ['N', 'N', 'N', 'N', 'N', 'N', 'S'],
-//   'NNE': ['NNE', 'NNE', 'NNO', 'NNE', 'NNO', 'NNE', 'SSI'],
-//   'NE': ['NE', 'NE', 'NO', 'NE', 'NO', 'NE', 'SI'],
-//   'ENE': ['ENE', 'ENE', 'ONO', 'ENE', 'ONO', 'ENE', 'ISI'],
-//   'E': ['E', 'E', 'O', 'E', 'O', 'E', 'I'],
-//   'ESE': ['ESE', 'ESE', 'OZO', 'ESE', 'OSO', 'ESE', 'IJI'],
-//   'SE': ['SE', 'SE', 'ZO', 'SE', 'SO', 'SE', 'JI'],
-//   'SSE': ['SSE', 'SSE', 'ZZO', 'SSE', 'SSO', 'SSE', 'JJI'],
-//   'S': ['S', 'S', 'Z', 'S', 'S', 'S', 'J'],
-//   'SSW': ['SSW', 'SSO', 'ZZW', 'SSO', 'SSW', 'SSO', 'JJZ'],
-//   'SW': ['SW', 'SO', 'ZW', 'SO', 'SW', 'SO', 'JZ'],
-//   'WSW': ['WSW', 'OSO', 'WZW', 'OSO', 'WSW', 'OSO', 'ZSZ'],
-//   'W': ['W', 'O', 'W', 'O', 'W', 'O', 'Z'],
-//   'WNW': ['WNW', 'ONO', 'WNW', 'ONO', 'WNW', 'ONO', 'ZSZ'],
-//   'NW': ['NW', 'NO', 'NW', 'NO', 'NW', 'NO', 'SZ'],
-//   'NNW': ['NNW', 'NNO', 'NNW', 'NNO', 'NNW', 'NNO', 'SSZ'],
-// };
-// export let cwcTerms = {
-//   'Feels Like' : ['Feels Like', 'Percepita', 'Voelt Als', 'Parece que', 'Gef&uuml;hlt',
-//     'Ressentie', 'Subjektivni osećaj'],
-//   'new_moon': [ 'New moon', 'Novilunio', 'Nieuwe maan', 'Luna nueva', 'Neumond',
-//     'Nouvelle lune', 'Mlad mesec'],
-//   'new': [ 'New moon', 'Novilunio', 'Nieuwe maan', 'Luna nueva', 'Neumond',
-//     'Nouvelle lune', 'Mlad mesec'],
-//   'waxing_crescent': ['Waxing crescent', 'Luna crescente', 'Wassende sikkel', 'Media luna de cera', 'Zunehmende Sichel',
-//     'Premier croissant', 'Prva osmina'],
-//   'first_quarter': ['First quarter', 'Primo Quarto', 'Eerste kwartaal', 'Primer trimestre', 'Erstes Viertel',
-//     'Premier quartier', 'Prva četvrt'],
-//   'waxing_gibbous': ['Waxing Gibbous', 'Gibbosa crescente', 'Wassen Gibbous', 'Encerado Gibbous', 'Zunehmender Halbmond',
-//     'Gibbeuse croissante', 'Treća osmina'],
-//   'full': ['Full', 'Luna piena', 'Volledig', 'Completo', 'Vollmond',
-//     'Pleine lune', 'Pun mesec'],
-//   'waning_gibbous': ['Waning Gibbous', 'Gibbosa calante', 'Zwemmende Gibbous', 'Waning Gibbous', 'Abnehmender Halbmond',
-//     'Gibbeuse décroissante', 'Peta osmina'],
-//   'third_quarter': ['Third Quarter', 'Ultimo quarto', 'Derde Kwartier', 'Tercer cuarto', 'Drittes Viertel',
-//     'Dernier quartier', 'Treća četvrtina'],
-//   'last_quarter': ['Last Quarter', 'Ultimo quarto', 'Laatste Kwartier', 'Último cuarto', 'Letztes Viertel',
-//     'Dernier quartier', 'Zadnja četvrtina'],
-//   'waning_crescent': ['Waning Crescent', 'Luna calante', 'Zwemmende sikkel', 'Waning Crescent', 'Abnehmende Sichel',
-//     'Lune décroissante', 'Sedma osmina'],
-// } ;
-// 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌑
-let cwcMoonPhaseIcons = {
-    new_moon: "🌑",
-    new: "🌑",
-    waxing_crescent: "🌒",
-    first_quarter: "🌓",
-    waxing_gibbous: "🌔",
-    full: "🌕",
-    full_moon: "🌕",
-    waning_gibbous: "🌖",
-    third_quarter: "🌗",
-    last_quarter: "🌗",
-    waning_crescent: "🌘"
-};
+    let cwcLocale = { en: 0, it: 1, nl: 2, es: 3, de: 4, fr: 5, "sr-latn": 6, pt: 7, da: 8, "no-no": 9 };
+    // export let cwcLocWindDirections = {
+    //   'N': ['N', 'N', 'N', 'N', 'N', 'N', 'S'],
+    //   'NNE': ['NNE', 'NNE', 'NNO', 'NNE', 'NNO', 'NNE', 'SSI'],
+    //   'NE': ['NE', 'NE', 'NO', 'NE', 'NO', 'NE', 'SI'],
+    //   'ENE': ['ENE', 'ENE', 'ONO', 'ENE', 'ONO', 'ENE', 'ISI'],
+    //   'E': ['E', 'E', 'O', 'E', 'O', 'E', 'I'],
+    //   'ESE': ['ESE', 'ESE', 'OZO', 'ESE', 'OSO', 'ESE', 'IJI'],
+    //   'SE': ['SE', 'SE', 'ZO', 'SE', 'SO', 'SE', 'JI'],
+    //   'SSE': ['SSE', 'SSE', 'ZZO', 'SSE', 'SSO', 'SSE', 'JJI'],
+    //   'S': ['S', 'S', 'Z', 'S', 'S', 'S', 'J'],
+    //   'SSW': ['SSW', 'SSO', 'ZZW', 'SSO', 'SSW', 'SSO', 'JJZ'],
+    //   'SW': ['SW', 'SO', 'ZW', 'SO', 'SW', 'SO', 'JZ'],
+    //   'WSW': ['WSW', 'OSO', 'WZW', 'OSO', 'WSW', 'OSO', 'ZSZ'],
+    //   'W': ['W', 'O', 'W', 'O', 'W', 'O', 'Z'],
+    //   'WNW': ['WNW', 'ONO', 'WNW', 'ONO', 'WNW', 'ONO', 'ZSZ'],
+    //   'NW': ['NW', 'NO', 'NW', 'NO', 'NW', 'NO', 'SZ'],
+    //   'NNW': ['NNW', 'NNO', 'NNW', 'NNO', 'NNW', 'NNO', 'SSZ'],
+    // };
+    // export let cwcTerms = {
+    //   'Feels Like' : ['Feels Like', 'Percepita', 'Voelt Als', 'Parece que', 'Gef&uuml;hlt',
+    //     'Ressentie', 'Subjektivni osećaj'],
+    //   'new_moon': [ 'New moon', 'Novilunio', 'Nieuwe maan', 'Luna nueva', 'Neumond',
+    //     'Nouvelle lune', 'Mlad mesec'],
+    //   'new': [ 'New moon', 'Novilunio', 'Nieuwe maan', 'Luna nueva', 'Neumond',
+    //     'Nouvelle lune', 'Mlad mesec'],
+    //   'waxing_crescent': ['Waxing crescent', 'Luna crescente', 'Wassende sikkel', 'Media luna de cera', 'Zunehmende Sichel',
+    //     'Premier croissant', 'Prva osmina'],
+    //   'first_quarter': ['First quarter', 'Primo Quarto', 'Eerste kwartaal', 'Primer trimestre', 'Erstes Viertel',
+    //     'Premier quartier', 'Prva četvrt'],
+    //   'waxing_gibbous': ['Waxing Gibbous', 'Gibbosa crescente', 'Wassen Gibbous', 'Encerado Gibbous', 'Zunehmender Halbmond',
+    //     'Gibbeuse croissante', 'Treća osmina'],
+    //   'full': ['Full', 'Luna piena', 'Volledig', 'Completo', 'Vollmond',
+    //     'Pleine lune', 'Pun mesec'],
+    //   'waning_gibbous': ['Waning Gibbous', 'Gibbosa calante', 'Zwemmende Gibbous', 'Waning Gibbous', 'Abnehmender Halbmond',
+    //     'Gibbeuse décroissante', 'Peta osmina'],
+    //   'third_quarter': ['Third Quarter', 'Ultimo quarto', 'Derde Kwartier', 'Tercer cuarto', 'Drittes Viertel',
+    //     'Dernier quartier', 'Treća četvrtina'],
+    //   'last_quarter': ['Last Quarter', 'Ultimo quarto', 'Laatste Kwartier', 'Último cuarto', 'Letztes Viertel',
+    //     'Dernier quartier', 'Zadnja četvrtina'],
+    //   'waning_crescent': ['Waning Crescent', 'Luna calante', 'Zwemmende sikkel', 'Waning Crescent', 'Abnehmende Sichel',
+    //     'Lune décroissante', 'Sedma osmina'],
+    // } ;
+    // 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌑
+    let cwcMoonPhaseIcons = {
+        new_moon: "🌑",
+        new: "🌑",
+        waxing_crescent: "🌒",
+        first_quarter: "🌓",
+        waxing_gibbous: "🌔",
+        full: "🌕",
+        full_moon: "🌕",
+        waning_gibbous: "🌖",
+        third_quarter: "🌗",
+        last_quarter: "🌗",
+        waning_crescent: "🌘"
+    };
 
-function pad(n, width, z = undefined) {
-    z = z || '0';
-    n = n + '';
-    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
-/**
- *
- * @param imageSrc
- */
-function imageExist(imageSrc) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            let img = new Image();
-            img.onload = () => { resolve(true); };
-            img.onerror = () => { resolve(false); };
-            img.src = imageSrc;
-        }, 100);
-    });
-}
-/**
- *
- * @param term
- * @param terms
- */
-const translate = (term, terms) => {
-    // console.info(">>>>loc:" + lang + "" + cwcLocale[lang] ) ;
-    return terms[Object.keys(terms).find(key => key.toLowerCase() === term.toLowerCase())]
-        ? terms[Object.keys(terms).find(key => key.toLowerCase() === term.toLowerCase())]
-        : term;
-};
-/**
- *
- * @param condition
- * @param iconsConfig
- * @param sunState
- */
-const getWeatherIcon = (condition, iconsConfig, sunState) => {
-    let isNight = sunState && sunState == "below_horizon";
-    let iconName = isNight ? iconsConfig.iconsNight[condition] : iconsConfig.iconsDay[condition];
-    if (iconsConfig.path == null) {
-        console.info("Image path not found. (hacsImagePathExist=" + exports.hacsImagePathExist
-            + ")(manImagePathExist=" + exports.manImagePathExist);
+    function pad(n, width, z = undefined) {
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
-    if (undefined === iconName)
-        console.info("Icons issue. States: icons_model=" + iconsConfig.icons_model
-            + " - isDay=" + (!isNight) + " - condition: " + condition + ".");
-    //console.info(this._config.weather.icons_model + ' - ' + condition + ' - ' + this._weatherIconsDay[condition]) ;
-    return `${iconsConfig.path}/${iconsConfig.iconType}/${iconName}.svg`;
-};
-/**
- *
- * @param measure
- * @param hass
- */
-const getUnit = (hass, measure) => {
-    const lengthUnit = hass.config.unit_system.length;
-    switch (measure) {
-        case "air_pressure":
-            return lengthUnit === "km" ? "hPa" : "inHg";
-        case "length":
-            return lengthUnit;
-        case "precipitation":
-            return lengthUnit === "km" ? "mm" : "in";
-        default:
-            return hass.config.unit_system[measure] || "";
+    /**
+     *
+     * @param imageSrc
+     */
+    function imageExist(imageSrc) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                let img = new Image();
+                img.onload = () => { resolve(true); };
+                img.onerror = () => { resolve(false); };
+                img.src = imageSrc;
+            }, 100);
+        });
     }
-};
-const getWindDirections = (wd, cwcLocWindDirections) => {
-    if (wd < 0 || wd > 360) {
-        console.log("Enter a degree between 0 and 360 degrees.");
+    /**
+     *
+     * @param term
+     * @param terms
+     */
+    const translate = (term, terms) => {
+        // console.info(">>>>loc:" + lang + "" + cwcLocale[lang] ) ;
+        return terms[Object.keys(terms).find(key => key.toLowerCase() === term.toLowerCase())]
+            ? terms[Object.keys(terms).find(key => key.toLowerCase() === term.toLowerCase())]
+            : term;
+    };
+    /**
+     *
+     * @param condition
+     * @param iconsConfig
+     * @param sunState
+     */
+    const getWeatherIcon = (condition, iconsConfig, sunState) => {
+        let isNight = sunState && sunState == "below_horizon";
+        let iconName = isNight ? iconsConfig.iconsNight[condition] : iconsConfig.iconsDay[condition];
+        if (iconsConfig.path == null) {
+            console.info("Image path not found. (hacsImagePathExist=" + exports.hacsImagePathExist
+                + ")(manImagePathExist=" + exports.manImagePathExist);
+        }
+        if (undefined === iconName)
+            console.info("Icons issue. States: icons_model=" + iconsConfig.icons_model
+                + " - isDay=" + (!isNight) + " - condition: " + condition + ".");
+        //console.info(this._config.weather.icons_model + ' - ' + condition + ' - ' + this._weatherIconsDay[condition]) ;
+        return `${iconsConfig.path}/${iconsConfig.iconType}/${iconName}.svg`;
+    };
+    /**
+     *
+     * @param measure
+     * @param hass
+     */
+    const getUnit = (hass, measure) => {
+        const lengthUnit = hass.config.unit_system.length;
+        switch (measure) {
+            case "air_pressure":
+                return lengthUnit === "km" ? "hPa" : "inHg";
+            case "length":
+                return lengthUnit;
+            case "precipitation":
+                return lengthUnit === "km" ? "mm" : "in";
+            default:
+                return hass.config.unit_system[measure] || "";
+        }
+    };
+    const getWindDirections = (wd, cwcLocWindDirections) => {
+        if (wd < 0 || wd > 360) {
+            console.log("Enter a degree between 0 and 360 degrees.");
+            return null;
+        }
+        if (wd >= 0 && wd <= 11.25)
+            return cwcLocWindDirections['N'];
+        if (wd > 348.75 && wd <= 360)
+            return cwcLocWindDirections['N'];
+        if (wd > 11.25 && wd <= 33.75)
+            return cwcLocWindDirections['NNE'];
+        if (wd > 33.75 && wd <= 56.25)
+            return cwcLocWindDirections['NE'];
+        if (wd > 56.25 && wd <= 78.75)
+            return cwcLocWindDirections['ENE'];
+        if (wd > 78.75 && wd <= 101.25)
+            return cwcLocWindDirections['E'];
+        if (wd > 101.25 && wd <= 123.75)
+            return cwcLocWindDirections['ESE'];
+        if (wd > 123.75 && wd <= 146.25)
+            return cwcLocWindDirections['SE'];
+        if (wd > 146.25 && wd <= 168.75)
+            return cwcLocWindDirections['SSE'];
+        if (wd > 168.75 && wd <= 191.25)
+            return cwcLocWindDirections['S'];
+        if (wd > 191.25 && wd <= 213.75)
+            return cwcLocWindDirections['SSW'];
+        if (wd > 213.75 && wd <= 236.25)
+            return cwcLocWindDirections['SW'];
+        if (wd > 236.25 && wd <= 258.75)
+            return cwcLocWindDirections['WSW'];
+        if (wd > 258.75 && wd <= 281.25)
+            return cwcLocWindDirections['W'];
+        if (wd > 281.25 && wd <= 303.75)
+            return cwcLocWindDirections['WNW'];
+        if (wd > 303.75 && wd <= 326.25)
+            return cwcLocWindDirections['NW'];
+        if (wd > 326.25 && wd <= 348.75)
+            return cwcLocWindDirections['NNW'];
         return null;
+    };
+    function getMoonIcon(phase) {
+        return (cwcMoonPhaseIcons[phase.toLowerCase()]);
     }
-    if (wd >= 0 && wd <= 11.25)
-        return cwcLocWindDirections['N'];
-    if (wd > 348.75 && wd <= 360)
-        return cwcLocWindDirections['N'];
-    if (wd > 11.25 && wd <= 33.75)
-        return cwcLocWindDirections['NNE'];
-    if (wd > 33.75 && wd <= 56.25)
-        return cwcLocWindDirections['NE'];
-    if (wd > 56.25 && wd <= 78.75)
-        return cwcLocWindDirections['ENE'];
-    if (wd > 78.75 && wd <= 101.25)
-        return cwcLocWindDirections['E'];
-    if (wd > 101.25 && wd <= 123.75)
-        return cwcLocWindDirections['ESE'];
-    if (wd > 123.75 && wd <= 146.25)
-        return cwcLocWindDirections['SE'];
-    if (wd > 146.25 && wd <= 168.75)
-        return cwcLocWindDirections['SSE'];
-    if (wd > 168.75 && wd <= 191.25)
-        return cwcLocWindDirections['S'];
-    if (wd > 191.25 && wd <= 213.75)
-        return cwcLocWindDirections['SSW'];
-    if (wd > 213.75 && wd <= 236.25)
-        return cwcLocWindDirections['SW'];
-    if (wd > 236.25 && wd <= 258.75)
-        return cwcLocWindDirections['WSW'];
-    if (wd > 258.75 && wd <= 281.25)
-        return cwcLocWindDirections['W'];
-    if (wd > 281.25 && wd <= 303.75)
-        return cwcLocWindDirections['WNW'];
-    if (wd > 303.75 && wd <= 326.25)
-        return cwcLocWindDirections['NW'];
-    if (wd > 326.25 && wd <= 348.75)
-        return cwcLocWindDirections['NNW'];
-    return null;
-};
-function getMoonIcon(phase) {
-    return (cwcMoonPhaseIcons[phase.toLowerCase()]);
-}
-function loadJSON(full_path_file) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            let xobj = new XMLHttpRequest();
-            xobj.overrideMimeType("application/json");
-            xobj.open('GET', full_path_file, true);
-            // Replace 'my_data' with the path to your file
-            xobj.onreadystatechange = () => {
-                if (xobj.readyState === 4 && xobj.status === 200) {
-                    // Required use of an anonymous callback
-                    // as .open() will NOT return a value but simply returns undefined in asynchronous mode
-                    resolve(xobj.responseText);
-                }
-                else if (xobj.status !== 200) {
-                    let err = "ERROR during json file retrieve: '" + full_path_file
-                        + "', readyState: " + xobj.readyState
-                        + ", status: " + xobj.status
-                        + ", statusText: " + xobj.statusText
-                        + ", responseText: " + xobj.responseText;
-                    console.info(err);
-                }
-            };
-            xobj.send(null);
-        }, 100);
-    });
-}
-function numFormat(stringNumber, fractionDigits = 1) {
-    switch (fractionDigits) {
-        case 0:
-            return exports.numberFormat_0dec.format(parseFloat(stringNumber));
-        case 1:
-            return exports.numberFormat_1dec.format(parseFloat(stringNumber));
+    function loadJSON(full_path_file) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                let xobj = new XMLHttpRequest();
+                xobj.overrideMimeType("application/json");
+                xobj.open('GET', full_path_file, true);
+                // Replace 'my_data' with the path to your file
+                xobj.onreadystatechange = () => {
+                    if (xobj.readyState === 4 && xobj.status === 200) {
+                        // Required use of an anonymous callback
+                        // as .open() will NOT return a value but simply returns undefined in asynchronous mode
+                        resolve(xobj.responseText);
+                    }
+                    else if (xobj.status !== 200) {
+                        let err = "ERROR during json file retrieve: '" + full_path_file
+                            + "', readyState: " + xobj.readyState
+                            + ", status: " + xobj.status
+                            + ", statusText: " + xobj.statusText
+                            + ", responseText: " + xobj.responseText;
+                        console.info(err);
+                    }
+                };
+                xobj.send(null);
+            }, 100);
+        });
     }
-    // return parseFloat(stringNumber).toFixed(fractionDigits) ;
-}
-// export function circadianRhythm( hass: HomeAssistant, sunId: string ) {
-//   let lightRatio;
-//   // let nextUpdate;
-//
-//   let sun = hass.states[sunId] ;
-//
-//   const now = (new Date()).getTime();
-//
-//   let times = {
-//     sunrise: (new Date(sun.attributes.next_dawn)).getTime(),
-//     sunriseEnd: (new Date(sun.attributes.next_rising)).getTime(),
-//
-//     sunsetStart: (new Date(sun.attributes.next_setting)).getTime(),
-//     sunset: (new Date(sun.attributes.next_dusk)).getTime(),
-//   };
-//
-//   console.info( JSON.stringify(times));
-//   if (now > times.sunrise && now < times.sunriseEnd) {
-//     lightRatio = (now - times.sunrise) / (times.sunriseEnd - times.sunrise);
-//     // nextUpdate = now + UPDATE_FREQUENCY;
-//   } else if(now > times.sunriseEnd && now < times.sunsetStart) {
-//     lightRatio = 1;
-//     // nextUpdate = times.sunsetStart;
-//   } else if (now > times.sunsetStart && now < times.sunset) {
-//     lightRatio = (times.sunset - now) / (times.sunset - times.sunsetStart);
-//     // nextUpdate = now + UPDATE_FREQUENCY;
-//   } else {
-//     lightRatio = 0;
-//     // nextUpdate = times.sunrise;
-//   }
-//
-// // Range (in lux) from 0.0001 to 100000 in increments of 0.0001.
-//   const lightLevel = Math.round(1 + lightRatio * 999999999) / 10000;
-//
-//   console.info( "lightLevel=" + lightLevel + " - lightRatio: " + lightRatio ) ;
-//   return lightLevel ;
-// }
+    function numFormat(stringNumber, fractionDigits = 1) {
+        switch (fractionDigits) {
+            case 0:
+                return exports.numberFormat_0dec.format(parseFloat(stringNumber));
+            case 1:
+                return exports.numberFormat_1dec.format(parseFloat(stringNumber));
+        }
+        // return parseFloat(stringNumber).toFixed(fractionDigits) ;
+    }
+    // export function circadianRhythm( hass: HomeAssistant, sunId: string ) {
+    //   let lightRatio;
+    //   // let nextUpdate;
+    //
+    //   let sun = hass.states[sunId] ;
+    //
+    //   const now = (new Date()).getTime();
+    //
+    //   let times = {
+    //     sunrise: (new Date(sun.attributes.next_dawn)).getTime(),
+    //     sunriseEnd: (new Date(sun.attributes.next_rising)).getTime(),
+    //
+    //     sunsetStart: (new Date(sun.attributes.next_setting)).getTime(),
+    //     sunset: (new Date(sun.attributes.next_dusk)).getTime(),
+    //   };
+    //
+    //   console.info( JSON.stringify(times));
+    //   if (now > times.sunrise && now < times.sunriseEnd) {
+    //     lightRatio = (now - times.sunrise) / (times.sunriseEnd - times.sunrise);
+    //     // nextUpdate = now + UPDATE_FREQUENCY;
+    //   } else if(now > times.sunriseEnd && now < times.sunsetStart) {
+    //     lightRatio = 1;
+    //     // nextUpdate = times.sunsetStart;
+    //   } else if (now > times.sunsetStart && now < times.sunset) {
+    //     lightRatio = (times.sunset - now) / (times.sunset - times.sunsetStart);
+    //     // nextUpdate = now + UPDATE_FREQUENCY;
+    //   } else {
+    //     lightRatio = 0;
+    //     // nextUpdate = times.sunrise;
+    //   }
+    //
+    // // Range (in lux) from 0.0001 to 100000 in increments of 0.0001.
+    //   const lightLevel = Math.round(1 + lightRatio * 999999999) / 10000;
+    //
+    //   console.info( "lightLevel=" + lightLevel + " - lightRatio: " + lightRatio ) ;
+    //   return lightLevel ;
+    // }
 
-/**
- *
- * @param hass
- * @param currentCfg
- * @param name
- * @param iconsConfig
- */
-const renderSummary = (hass, currentCfg, name, iconsConfig, terms) => {
-    let temperature, feels_like;
-    let sun = currentCfg.sun && hass.states[currentCfg.sun] ? hass.states[currentCfg.sun].state : undefined;
-    let moon = currentCfg.moon_phase && hass.states[currentCfg.moon_phase]
-        ? hass.states[currentCfg.moon_phase].state : undefined;
-    let moonIcon = moon ? getMoonIcon(moon) : undefined;
-    let current_conditions = currentCfg.current_conditions && hass.states[currentCfg.current_conditions]
-        ? hass.states[currentCfg.current_conditions].state : "Na";
-    if (currentCfg.temperature && hass.states[currentCfg.temperature]) {
-        // if(getUnit(hass, "temperature") == "°F")
-        //   temperature = Math.round(parseFloat(hass.states[currentCfg.temperature].state)) ;
-        // else temperature = numFormat(hass.states[currentCfg.temperature].state) ;
-        temperature = numFormat(hass.states[currentCfg.temperature].state);
-    }
-    else {
-        temperature = "Na";
-    }
-    if (currentCfg.feels_like && hass.states[currentCfg.feels_like]) {
-        // if( hass.states[currentCfg.feels_like].attributes.unit_of_measurement == "F" )
-        //   feels_like = Math.round(parseFloat(hass.states[currentCfg.feels_like].state)) ;
-        // else feels_like = parseFloat(hass.states[currentCfg.feels_like].state) ;
-        feels_like = numFormat(hass.states[currentCfg.feels_like].state);
-    }
-    else
-        feels_like = "Na";
-    return litElement.html `
+    /**
+     *
+     * @param hass
+     * @param currentCfg
+     * @param name
+     * @param iconsConfig
+     */
+    const renderSummary = (hass, currentCfg, name, iconsConfig, terms) => {
+        let temperature, feels_like;
+        let sun = currentCfg.sun && hass.states[currentCfg.sun] ? hass.states[currentCfg.sun].state : undefined;
+        let moon = currentCfg.moon_phase && hass.states[currentCfg.moon_phase]
+            ? hass.states[currentCfg.moon_phase].state : undefined;
+        let moonIcon = moon ? getMoonIcon(moon) : undefined;
+        let current_conditions = currentCfg.current_conditions && hass.states[currentCfg.current_conditions]
+            ? hass.states[currentCfg.current_conditions].state : "Na";
+        if (currentCfg.temperature && hass.states[currentCfg.temperature]) {
+            // if(getUnit(hass, "temperature") == "°F")
+            //   temperature = Math.round(parseFloat(hass.states[currentCfg.temperature].state)) ;
+            // else temperature = numFormat(hass.states[currentCfg.temperature].state) ;
+            temperature = numFormat(hass.states[currentCfg.temperature].state);
+        }
+        else {
+            temperature = "Na";
+        }
+        if (currentCfg.feels_like && hass.states[currentCfg.feels_like]) {
+            // if( hass.states[currentCfg.feels_like].attributes.unit_of_measurement == "F" )
+            //   feels_like = Math.round(parseFloat(hass.states[currentCfg.feels_like].state)) ;
+            // else feels_like = parseFloat(hass.states[currentCfg.feels_like].state) ;
+            feels_like = numFormat(hass.states[currentCfg.feels_like].state);
+        }
+        else
+            feels_like = "Na";
+        return litElement.html `
       <div class="current">
         <span class="icon bigger" style="background: none,
             url('${getWeatherIcon(current_conditions.toLowerCase(), iconsConfig, sun)}') no-repeat ; 
@@ -1071,92 +1068,92 @@ const renderSummary = (hass, currentCfg, name, iconsConfig, terms) => {
         </ul>      
       ` : ""}
    `;
-};
+    };
 
-/**
- *
- * @param entity_min
- * @param entity_unit_min
- * @param entity_max
- * @param entity_unit_max
- * @param icon
- * @private
- */
-const _renderPresentDouble = (entity_min, entity_unit_min, entity_max, entity_unit_max, icon) => {
-    return ((undefined !== entity_min) || (undefined !== entity_max) ? litElement.html `
+    /**
+     *
+     * @param entity_min
+     * @param entity_unit_min
+     * @param entity_max
+     * @param entity_unit_max
+     * @param icon
+     * @private
+     */
+    const _renderPresentDouble = (entity_min, entity_unit_min, entity_max, entity_unit_max, icon) => {
+        return ((undefined !== entity_min) || (undefined !== entity_max) ? litElement.html `
     <li>
       <ha-icon icon="${icon}"></ha-icon>${undefined !== entity_min ? entity_min : "Na"} ${entity_unit_min} /
           <b>${undefined !== entity_max ? entity_max : "Na"} ${entity_unit_max}</b>
     </li>
   ` : "");
-};
-const _renderPresentSingle = (entity, entity_unit, icon) => {
-    return (litElement.html `
+    };
+    const _renderPresentSingle = (entity, entity_unit, icon) => {
+        return (litElement.html `
     <li>
       <ha-icon icon="${icon}"></ha-icon>${undefined !== entity ? entity : "Na"} ${entity_unit}
     </li>
   `);
-};
-/**
- *
- * @param hass
- * @param currentCfg
- * @param forecastCfg
- * @param language
- * @param terms
- * @param border
- */
-const renderPresent = (hass, currentCfg, forecastCfg, language, terms, border) => {
-    let temperature_high, temperature_low, precipitation_probability, precipitation_intensity;
-    let next_rising, next_setting;
-    language || hass.selectedLanguage || hass.language;
-    let sun = currentCfg.sun ? hass.states[currentCfg.sun] : undefined;
-    if (sun) {
-        next_rising = new Date(sun.attributes.next_rising);
-        next_setting = new Date(sun.attributes.next_setting);
-        //console.log( "now:" + (new Date()).toLocaleTimeString() + " next_rising:" + next_rising.toLocaleTimeString() ) ;
-    }
-    if (currentCfg.forecast) {
-        let temp_high = forecastCfg.temperature_high
-            ? Object.entries(forecastCfg.temperature_high) : undefined;
-        let temp_low = forecastCfg.temperature_low
-            ? Object.entries(forecastCfg.temperature_low) : undefined;
-        let prec_probability = forecastCfg.precipitation_probability
-            ? Object.entries(forecastCfg.precipitation_probability) : undefined;
-        let prec_intensity = forecastCfg.precipitation_intensity
-            ? Object.entries(forecastCfg.precipitation_intensity) : undefined;
+    };
+    /**
+     *
+     * @param hass
+     * @param currentCfg
+     * @param forecastCfg
+     * @param language
+     * @param terms
+     * @param border
+     */
+    const renderPresent = (hass, currentCfg, forecastCfg, language, terms, border) => {
+        let temperature_high, temperature_low, precipitation_probability, precipitation_intensity;
+        let next_rising, next_setting;
+        language || hass.selectedLanguage || hass.language;
+        let sun = currentCfg.sun ? hass.states[currentCfg.sun] : undefined;
+        if (sun) {
+            next_rising = new Date(sun.attributes.next_rising);
+            next_setting = new Date(sun.attributes.next_setting);
+            //console.log( "now:" + (new Date()).toLocaleTimeString() + " next_rising:" + next_rising.toLocaleTimeString() ) ;
+        }
+        if (currentCfg.forecast) {
+            let temp_high = forecastCfg.temperature_high
+                ? Object.entries(forecastCfg.temperature_high) : undefined;
+            let temp_low = forecastCfg.temperature_low
+                ? Object.entries(forecastCfg.temperature_low) : undefined;
+            let prec_probability = forecastCfg.precipitation_probability
+                ? Object.entries(forecastCfg.precipitation_probability) : undefined;
+            let prec_intensity = forecastCfg.precipitation_intensity
+                ? Object.entries(forecastCfg.precipitation_intensity) : undefined;
+            // @ts-ignore
+            temperature_high = Object.isSet(temp_high) && Object.isSet(hass.states[temp_high[0][1]])
+                ? numFormat(hass.states[temp_high[0][1]].state, 0) : undefined;
+            // @ts-ignore
+            temperature_low = Object.isSet(temp_low) && Object.isSet(hass.states[temp_low[0][1]])
+                ? numFormat(hass.states[temp_low[0][1]].state, 0) : undefined;
+            // @ts-ignore
+            precipitation_probability = Object.isSet(prec_probability) && Object.isSet(hass.states[prec_probability[0][1]])
+                ? numFormat(hass.states[prec_probability[0][1]].state, 0) : undefined;
+            // @ts-ignore
+            precipitation_intensity = Object.isSet(prec_intensity) && Object.isSet(hass.states[prec_intensity[0][1]])
+                ? numFormat(hass.states[prec_intensity[0][1]].state, 0) : undefined;
+        }
         // @ts-ignore
-        temperature_high = Object.isSet(temp_high) && Object.isSet(hass.states[temp_high[0][1]])
-            ? numFormat(hass.states[temp_high[0][1]].state, 0) : undefined;
+        let precipitation = Object.isSet(currentCfg.precipitation) && Object.isSet(hass.states[currentCfg.precipitation])
+            ? numFormat(hass.states[currentCfg.precipitation].state, 0) : undefined;
         // @ts-ignore
-        temperature_low = Object.isSet(temp_low) && Object.isSet(hass.states[temp_low[0][1]])
-            ? numFormat(hass.states[temp_low[0][1]].state, 0) : undefined;
+        let humidity = Object.isSet(currentCfg.humidity) && Object.isSet(hass.states[currentCfg.humidity])
+            ? numFormat(hass.states[currentCfg.humidity].state, 0) : undefined;
         // @ts-ignore
-        precipitation_probability = Object.isSet(prec_probability) && Object.isSet(hass.states[prec_probability[0][1]])
-            ? numFormat(hass.states[prec_probability[0][1]].state, 0) : undefined;
+        let wind_bearing = Object.isSet(currentCfg.wind_bearing) && Object.isSet(hass.states[currentCfg.wind_bearing])
+            ? numFormat(hass.states[currentCfg.wind_bearing].state) : undefined;
         // @ts-ignore
-        precipitation_intensity = Object.isSet(prec_intensity) && Object.isSet(hass.states[prec_intensity[0][1]])
-            ? numFormat(hass.states[prec_intensity[0][1]].state, 0) : undefined;
-    }
-    // @ts-ignore
-    let precipitation = Object.isSet(currentCfg.precipitation) && Object.isSet(hass.states[currentCfg.precipitation])
-        ? numFormat(hass.states[currentCfg.precipitation].state, 0) : undefined;
-    // @ts-ignore
-    let humidity = Object.isSet(currentCfg.humidity) && Object.isSet(hass.states[currentCfg.humidity])
-        ? numFormat(hass.states[currentCfg.humidity].state, 0) : undefined;
-    // @ts-ignore
-    let wind_bearing = Object.isSet(currentCfg.wind_bearing) && Object.isSet(hass.states[currentCfg.wind_bearing])
-        ? numFormat(hass.states[currentCfg.wind_bearing].state) : undefined;
-    // @ts-ignore
-    let wind_speed = Object.isSet(currentCfg.wind_speed) && Object.isSet(hass.states[currentCfg.wind_speed])
-        ? numFormat(hass.states[currentCfg.wind_speed].state) : undefined;
-    // @ts-ignore
-    let pressure = Object.isSet(currentCfg.pressure) && Object.isSet(hass.states[currentCfg.pressure])
-        ? numFormat(hass.states[currentCfg.pressure].state, 0) : undefined;
-    // @ts-ignore
-    let visibility = Object.isSet(currentCfg.visibility) && Object.isSet(hass.states[currentCfg.visibility])
-        ? numFormat(hass.states[currentCfg.visibility].state, 0) : undefined;
-    return litElement.html `
+        let wind_speed = Object.isSet(currentCfg.wind_speed) && Object.isSet(hass.states[currentCfg.wind_speed])
+            ? numFormat(hass.states[currentCfg.wind_speed].state) : undefined;
+        // @ts-ignore
+        let pressure = Object.isSet(currentCfg.pressure) && Object.isSet(hass.states[currentCfg.pressure])
+            ? numFormat(hass.states[currentCfg.pressure].state, 0) : undefined;
+        // @ts-ignore
+        let visibility = Object.isSet(currentCfg.visibility) && Object.isSet(hass.states[currentCfg.visibility])
+            ? numFormat(hass.states[currentCfg.visibility].state, 0) : undefined;
+        return litElement.html `
     <ul class="variations ${border ? "spacer" : ""}">
         ${void 0 !== typeof precipitation_probability || void 0 !== typeof precipitation_intensity
         ? _renderPresentDouble(precipitation_probability, '%', precipitation_intensity, getUnit(hass, "precipitation") + '/h', 'mdi:weather-rainy') : ""}
@@ -1182,63 +1179,63 @@ const renderPresent = (hass, currentCfg, forecastCfg, language, terms, border) =
         ${undefined !== next_setting ? _renderPresentSingle(next_setting.toLocaleTimeString(language), '', 'mdi:weather-sunset-down') : ""}           
     </ul>
   `;
-};
+    };
 
-/**
- *
- * @param entity_low
- * @param entity_unit_low
- * @param entity_high
- * @param entity_unit_high
- * @private
- */
-const _renderForecast = (entity_low, entity_unit_low, entity_high, entity_unit_high) => {
-    if (undefined == entity_low && undefined == entity_high) {
-        return litElement.html ``;
-    }
-    else if (undefined == entity_low) {
-        return litElement.html `
+    /**
+     *
+     * @param entity_low
+     * @param entity_unit_low
+     * @param entity_high
+     * @param entity_unit_high
+     * @private
+     */
+    const _renderForecast = (entity_low, entity_unit_low, entity_high, entity_unit_high) => {
+        if (undefined == entity_low && undefined == entity_high) {
+            return litElement.html ``;
+        }
+        else if (undefined == entity_low) {
+            return litElement.html `
             <div class="highTemp">
               <b>${entity_high}</b> ${entity_unit_high}
             </div>   
       `;
-    }
-    else if (undefined == entity_high) {
-        return litElement.html `
+        }
+        else if (undefined == entity_high) {
+            return litElement.html `
             <div class="lowTemp">
               ${entity_low} ${entity_unit_low}
             </div>  
       `;
-    }
-    else {
-        return litElement.html `
+        }
+        else {
+            return litElement.html `
             <div class="highTemp">
               ${entity_low} ${entity_unit_low} / <b>${entity_high} ${entity_unit_high}</b>
             </div>
       `;
-    }
-};
-const renderForecasts = (hass, currentCfg, forecastCfg, iconsConfig, lang, border) => {
-    let forecastDate = new Date();
-    // @ts-ignore
-    let sun = Object.isSet(currentCfg) && Object.isSet(currentCfg.sun) && Object.isSet(hass.states[currentCfg.sun])
-        ? hass.states[currentCfg.sun].state : undefined;
-    let icons = forecastCfg.icons
-        ? Object.entries(forecastCfg.icons) : undefined;
-    let temperature_high = forecastCfg.temperature_high
-        ? Object.entries(forecastCfg.temperature_high) : undefined;
-    let temperature_low = forecastCfg.temperature_low
-        ? Object.entries(forecastCfg.temperature_low) : undefined;
-    let precipitation_probability = forecastCfg.precipitation_probability
-        ? Object.entries(forecastCfg.precipitation_probability) : undefined;
-    let precipitation_intensity = forecastCfg.precipitation_intensity
-        ? Object.entries(forecastCfg.precipitation_intensity) : undefined;
-    let maxDays = Math.max(icons ? icons.length : 0, temperature_high ? temperature_high.length : 0, temperature_low ? temperature_low.length : 0, precipitation_probability ? precipitation_probability.length : 0, precipitation_intensity ? precipitation_intensity.length : 0);
-    let startDay = 1;
-    let days = maxDays > 0 ?
-        Array(maxDays - startDay).fill(1, 0, maxDays - startDay).map(() => startDay++)
-        : Array();
-    return maxDays > 1 ? litElement.html `
+        }
+    };
+    const renderForecasts = (hass, currentCfg, forecastCfg, iconsConfig, lang, border) => {
+        let forecastDate = new Date();
+        // @ts-ignore
+        let sun = Object.isSet(currentCfg) && Object.isSet(currentCfg.sun) && Object.isSet(hass.states[currentCfg.sun])
+            ? hass.states[currentCfg.sun].state : undefined;
+        let icons = forecastCfg.icons
+            ? Object.entries(forecastCfg.icons) : undefined;
+        let temperature_high = forecastCfg.temperature_high
+            ? Object.entries(forecastCfg.temperature_high) : undefined;
+        let temperature_low = forecastCfg.temperature_low
+            ? Object.entries(forecastCfg.temperature_low) : undefined;
+        let precipitation_probability = forecastCfg.precipitation_probability
+            ? Object.entries(forecastCfg.precipitation_probability) : undefined;
+        let precipitation_intensity = forecastCfg.precipitation_intensity
+            ? Object.entries(forecastCfg.precipitation_intensity) : undefined;
+        let maxDays = Math.max(icons ? icons.length : 0, temperature_high ? temperature_high.length : 0, temperature_low ? temperature_low.length : 0, precipitation_probability ? precipitation_probability.length : 0, precipitation_intensity ? precipitation_intensity.length : 0);
+        let startDay = 1;
+        let days = maxDays > 0 ?
+            Array(maxDays - startDay).fill(1, 0, maxDays - startDay).map(() => startDay++)
+            : Array();
+        return maxDays > 1 ? litElement.html `
       <div class="forecast clear ${border ? "spacer" : ""}">
         ${days.map(day => {
         let icon, day_temp_low, day_temp_high, day_prec_probab, day_prec_intensity;
@@ -1268,88 +1265,88 @@ const renderForecasts = (hass, currentCfg, forecastCfg, iconsConfig, lang, borde
     })}
       </div>
     ` : litElement.html ``;
-};
+    };
 
-const _renderPollen = (hass, item) => {
-    let entity = hass.states[item.entity];
-    let icon = item.icon || entity.attributes.icon;
-    let min = undefined !== item.min ? item.min : 0;
-    let max = undefined !== item.max ? item.max : 5;
-    let low = undefined !== item.low ? item.low : min;
-    let high = undefined !== item.high ? item.high : max;
-    let d = min == 0 ? 1 : 0;
-    return (entity ? litElement.html `
+    const _renderPollen = (hass, item) => {
+        let entity = hass.states[item.entity];
+        let icon = item.icon || entity.attributes.icon;
+        let min = undefined !== item.min ? item.min : 0;
+        let max = undefined !== item.max ? item.max : 5;
+        let low = undefined !== item.low ? item.low : min;
+        let high = undefined !== item.high ? item.high : max;
+        let d = min == 0 ? 1 : 0;
+        return (entity ? litElement.html `
      <li>
        <ha-icon icon="${icon}"></ha-icon>
        <meter class="meter" value="${parseInt(entity.state) + d}" optimum="${(high - low) / 2}"
             min="${min}" max="${max + d}" low="${low + d}" high="${high + d}">${entity.state}/${max}</meter>
      </li>
   ` : "");
-};
-/**
- <li>
- <ha-icon icon="${entity.attributes.icon}"></ha-icon>
- 0<meter class="meter" value="${0 + d}"
- min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
- <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
- </meter>
- </li>
- <li>
- <ha-icon icon="${entity.attributes.icon}"></ha-icon>
- 1<meter class="meter" value="${1 + d}"
- min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
- <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
- </meter>
- </li>
- <li>
- <ha-icon icon="${entity.attributes.icon}"></ha-icon>
- 2<meter class="meter" value="${2 + d}"
- min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
- <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
- </meter>
- </li>
- <li>
- <ha-icon icon="${entity.attributes.icon}"></ha-icon>
- 3<meter class="meter" value="${3 + d}"
- min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
- ${entity.state}/${max}
- </meter>
- </li>
- <li>
- <ha-icon icon="${entity.attributes.icon}"></ha-icon>
- 4<meter class="meter" value="${4 + d}"
- min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
- <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
- </meter>
- </li>
- <li>
- <ha-icon icon="${entity.attributes.icon}"></ha-icon>
- 5<meter class="meter" value="${5 + d}"
- min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
- <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
- </meter>
- </li>
- */
-function renderPollens(hass, pollen, border) {
-    let tree = pollen.tree && pollen.tree.entity ? _renderPollen(hass, pollen.tree) : undefined;
-    let weed = pollen.weed && pollen.weed.entity ? _renderPollen(hass, pollen.weed) : undefined;
-    let grass = pollen.grass && pollen.grass.entity ? _renderPollen(hass, pollen.grass) : undefined;
-    return litElement.html `
+    };
+    /**
+     <li>
+     <ha-icon icon="${entity.attributes.icon}"></ha-icon>
+     0<meter class="meter" value="${0 + d}"
+     min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
+     <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
+     </meter>
+     </li>
+     <li>
+     <ha-icon icon="${entity.attributes.icon}"></ha-icon>
+     1<meter class="meter" value="${1 + d}"
+     min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
+     <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
+     </meter>
+     </li>
+     <li>
+     <ha-icon icon="${entity.attributes.icon}"></ha-icon>
+     2<meter class="meter" value="${2 + d}"
+     min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
+     <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
+     </meter>
+     </li>
+     <li>
+     <ha-icon icon="${entity.attributes.icon}"></ha-icon>
+     3<meter class="meter" value="${3 + d}"
+     min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
+     ${entity.state}/${max}
+     </meter>
+     </li>
+     <li>
+     <ha-icon icon="${entity.attributes.icon}"></ha-icon>
+     4<meter class="meter" value="${4 + d}"
+     min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
+     <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
+     </meter>
+     </li>
+     <li>
+     <ha-icon icon="${entity.attributes.icon}"></ha-icon>
+     5<meter class="meter" value="${5 + d}"
+     min="${min}" max="${max + d}" low="${low + d}" high="${high + d}" optimum="${(high-low)/2}">
+     <div class="meter-gauge"><span style="width: 46.42%;">${entity.state}/${max}</span></div>
+     </meter>
+     </li>
+     */
+    function renderPollens(hass, pollen, border) {
+        let tree = pollen.tree && pollen.tree.entity ? _renderPollen(hass, pollen.tree) : undefined;
+        let weed = pollen.weed && pollen.weed.entity ? _renderPollen(hass, pollen.weed) : undefined;
+        let grass = pollen.grass && pollen.grass.entity ? _renderPollen(hass, pollen.grass) : undefined;
+        return litElement.html `
     <ul class="variations polles ${border ? "spacer" : ""}">
         ${tree ? tree : ""}${weed ? weed : ""}${grass ? grass : ""}
     </ul>
   `;
-}
+    }
 
-/**
- *
- * @param state
- * @param attributes
- * @param icon
- * @private
- */
-const _renderAirQuality = (state, attributes, icon) => {
-    return (state ? litElement.html `
+    /**
+     *
+     * @param state
+     * @param attributes
+     * @param icon
+     * @private
+     */
+    const _renderAirQuality = (state, attributes, icon) => {
+        return (state ? litElement.html `
     <li>
       <svg viewBox="0 0 24 15" width="24" height="15" xmlns="http://www.w3.org/2000/svg">
         <style>.small {font: 8px sans-serif;}</style>
@@ -1357,105 +1354,105 @@ const _renderAirQuality = (state, attributes, icon) => {
       </svg>${state} ${attributes.unit_of_measurement ? attributes.unit_of_measurement : ""}
     </li>    
   ` : "");
-};
-/**
- *
- * @param hass
- * @param airquality
- */
-const renderAirQualities = (hass, airquality, border) => {
-    let pm25 = undefined !== airquality.pm25 && undefined !== hass.states[airquality.pm25]
-        ? _renderAirQuality(numFormat(hass.states[airquality.pm25].state), hass.states[airquality.pm25].attributes, 'pm25') : undefined;
-    let pm10 = undefined !== airquality.pm10 && undefined !== hass.states[airquality.pm10]
-        ? _renderAirQuality(numFormat(hass.states[airquality.pm10].state), hass.states[airquality.pm10].attributes, 'pm10') : undefined;
-    let o3 = undefined !== airquality.o3 && undefined !== hass.states[airquality.o3]
-        ? _renderAirQuality(numFormat(hass.states[airquality.o3].state), hass.states[airquality.o3].attributes, 'o3') : undefined;
-    let no2 = undefined !== airquality.no2 && undefined !== hass.states[airquality.no2]
-        ? _renderAirQuality(numFormat(hass.states[airquality.no2].state), hass.states[airquality.no2].attributes, 'no2') : undefined;
-    let co = undefined !== airquality.co && undefined !== hass.states[airquality.co]
-        ? _renderAirQuality(numFormat(hass.states[airquality.co].state), hass.states[airquality.co].attributes, 'co') : undefined;
-    let so2 = undefined !== airquality.so2 && undefined !== hass.states[airquality.so2]
-        ? _renderAirQuality(numFormat(hass.states[airquality.so2].state), hass.states[airquality.so2].attributes, 'so2') : undefined;
-    let epa_aqi = undefined !== airquality.epa_aqi && undefined !== hass.states[airquality.epa_aqi]
-        ? _renderAirQuality(numFormat(hass.states[airquality.epa_aqi].state), hass.states[airquality.epa_aqi].attributes, 'aqi') : undefined;
-    let epa_health_concern = undefined !== airquality.epa_health_concern && undefined !== hass.states[airquality.epa_health_concern]
-        ? _renderAirQuality(hass.states[airquality.epa_health_concern].state, hass.states[airquality.epa_health_concern].attributes, 'aqi') : undefined;
-    return litElement.html `
+    };
+    /**
+     *
+     * @param hass
+     * @param airquality
+     */
+    const renderAirQualities = (hass, airquality, border) => {
+        let pm25 = undefined !== airquality.pm25 && undefined !== hass.states[airquality.pm25]
+            ? _renderAirQuality(numFormat(hass.states[airquality.pm25].state), hass.states[airquality.pm25].attributes, 'pm25') : undefined;
+        let pm10 = undefined !== airquality.pm10 && undefined !== hass.states[airquality.pm10]
+            ? _renderAirQuality(numFormat(hass.states[airquality.pm10].state), hass.states[airquality.pm10].attributes, 'pm10') : undefined;
+        let o3 = undefined !== airquality.o3 && undefined !== hass.states[airquality.o3]
+            ? _renderAirQuality(numFormat(hass.states[airquality.o3].state), hass.states[airquality.o3].attributes, 'o3') : undefined;
+        let no2 = undefined !== airquality.no2 && undefined !== hass.states[airquality.no2]
+            ? _renderAirQuality(numFormat(hass.states[airquality.no2].state), hass.states[airquality.no2].attributes, 'no2') : undefined;
+        let co = undefined !== airquality.co && undefined !== hass.states[airquality.co]
+            ? _renderAirQuality(numFormat(hass.states[airquality.co].state), hass.states[airquality.co].attributes, 'co') : undefined;
+        let so2 = undefined !== airquality.so2 && undefined !== hass.states[airquality.so2]
+            ? _renderAirQuality(numFormat(hass.states[airquality.so2].state), hass.states[airquality.so2].attributes, 'so2') : undefined;
+        let epa_aqi = undefined !== airquality.epa_aqi && undefined !== hass.states[airquality.epa_aqi]
+            ? _renderAirQuality(numFormat(hass.states[airquality.epa_aqi].state), hass.states[airquality.epa_aqi].attributes, 'aqi') : undefined;
+        let epa_health_concern = undefined !== airquality.epa_health_concern && undefined !== hass.states[airquality.epa_health_concern]
+            ? _renderAirQuality(hass.states[airquality.epa_health_concern].state, hass.states[airquality.epa_health_concern].attributes, 'aqi') : undefined;
+        return litElement.html `
     <ul class="variations ${border ? "spacer" : ""}">
         ${epa_aqi ? epa_aqi : ""}${epa_health_concern ? epa_health_concern : ""}
         ${pm25 ? pm25 : ""}${pm10 ? pm10 : ""}${o3 ? o3 : ""}${no2 ? no2 : ""}${co ? co : ""}${so2 ? so2 : ""}
     </ul>
   `;
-};
+    };
 
-const num = ['I', 'II', 'III', 'IV', 'V', 'VI'];
-const colors = ['#F1D1B1', '#E4B590', '#CF9F7D', '#B67851', '#A15E2D', '#513938'];
-/**
- *
- * @param entity
- * @param icon
- * @private
- */
-const _renderUvSingle = (entity, icon, round) => {
-    let value = round ? numFormat(entity.state, 0) : entity.state;
-    return (entity ? litHtml.html `
+    const num = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    const colors = ['#F1D1B1', '#E4B590', '#CF9F7D', '#B67851', '#A15E2D', '#513938'];
+    /**
+     *
+     * @param entity
+     * @param icon
+     * @private
+     */
+    const _renderUvSingle = (entity, icon, round) => {
+        let value = round ? numFormat(entity.state, 0) : entity.state;
+        return (entity ? litHtml.html `
     <li>
         <ha-icon icon="${icon}"></ha-icon>${value} ${entity.attributes.unit_of_measurement ? entity.attributes.unit_of_measurement : ""}
     </li>    
   ` : "");
-};
-/**
- *
- * @param entity1
- * @param entity2
- * @param icon
- * @private
- */
-const _renderUvDouble = (entity1, entity2, icon) => {
-    let value1 = undefined !== entity1 ? numFormat(entity1.state) : "--";
-    let value2 = undefined !== entity2 ? numFormat(entity2.state) : "--";
-    return (entity1 || entity2 ? litHtml.html `
+    };
+    /**
+     *
+     * @param entity1
+     * @param entity2
+     * @param icon
+     * @private
+     */
+    const _renderUvDouble = (entity1, entity2, icon) => {
+        let value1 = undefined !== entity1 ? numFormat(entity1.state) : "--";
+        let value2 = undefined !== entity2 ? numFormat(entity2.state) : "--";
+        return (entity1 || entity2 ? litHtml.html `
     <li>
         <ha-icon icon="${icon}"></ha-icon>${value1} / <b>${value2}</b>
         ${entity1.attributes.unit_of_measurement ? entity1.attributes.unit_of_measurement : ""}
     </li>    
   ` : "");
-};
-/**
- *
- * @param state
- * @private
- */
-const _getTime = (state) => {
-    let result = "- -";
-    if (state && "unknown" !== state) {
-        let stateValueRounded = Math.round(state);
-        let hours = Math.floor(stateValueRounded / 60);
-        let minutes = stateValueRounded % 60;
-        if (hours > 0)
-            result = `${hours}h${minutes}m`;
-        else {
-            result = `${minutes}m`;
+    };
+    /**
+     *
+     * @param state
+     * @private
+     */
+    const _getTime = (state) => {
+        let result = "- -";
+        if (state && "unknown" !== state) {
+            let stateValueRounded = Math.round(state);
+            let hours = Math.floor(stateValueRounded / 60);
+            let minutes = stateValueRounded % 60;
+            if (hours > 0)
+                result = `${hours}h${minutes}m`;
+            else {
+                result = `${minutes}m`;
+            }
         }
-    }
-    return result;
-};
-/**
- *
- * @param hass
- * @param uv
- * @param border
- */
-const renderUv = (hass, uv, border) => {
-    let protection_window = undefined !== uv.protection_window && hass.states[uv.protection_window]
-        ? _renderUvSingle(hass.states[uv.protection_window], 'mdi:sunglasses', false) : undefined;
-    let uv_level = undefined !== uv.uv_level && hass.states[uv.uv_level]
-        ? _renderUvSingle(hass.states[uv.uv_level], 'mdi:weather-sunny', false) : undefined;
-    let uv_index = undefined !== uv.uv_index && undefined !== uv.max_uv_index
-        ? _renderUvDouble(hass.states[uv.uv_index], hass.states[uv.max_uv_index], 'mdi:weather-sunny') : "";
-    let ozone_level = undefined !== uv.ozone_level && hass.states[uv.ozone_level]
-        ? _renderUvSingle(hass.states[uv.ozone_level], 'mdi:vector-triangle', true) : undefined;
-    return litHtml.html `
+        return result;
+    };
+    /**
+     *
+     * @param hass
+     * @param uv
+     * @param border
+     */
+    const renderUv = (hass, uv, border) => {
+        let protection_window = undefined !== uv.protection_window && hass.states[uv.protection_window]
+            ? _renderUvSingle(hass.states[uv.protection_window], 'mdi:sunglasses', false) : undefined;
+        let uv_level = undefined !== uv.uv_level && hass.states[uv.uv_level]
+            ? _renderUvSingle(hass.states[uv.uv_level], 'mdi:weather-sunny', false) : undefined;
+        let uv_index = undefined !== uv.uv_index && undefined !== uv.max_uv_index
+            ? _renderUvDouble(hass.states[uv.uv_index], hass.states[uv.max_uv_index], 'mdi:weather-sunny') : "";
+        let ozone_level = undefined !== uv.ozone_level && hass.states[uv.ozone_level]
+            ? _renderUvSingle(hass.states[uv.ozone_level], 'mdi:vector-triangle', true) : undefined;
+        return litHtml.html `
     <ul class="variations ${border ? "spacer" : ""}">
         ${uv_level ? uv_level : ""}${protection_window ? protection_window : ""}
         ${uv_index ? uv_index : ""}${ozone_level ? ozone_level : ""}
@@ -1476,14 +1473,14 @@ const renderUv = (hass, uv, border) => {
     })}
     </div>
   `;
-};
+    };
 
-// @ts-ignore
-const renderAlert = (hass, alert_sensor, border) => {
-    let alerts = Object.entries(alert_sensor);
-    // console.info( alert_sensor ) ;
-    // console.info( alerts) ;
-    return litHtml.html `
+    // @ts-ignore
+    const renderAlert = (hass, alert_sensor, border) => {
+        let alerts = Object.entries(alert_sensor);
+        // console.info( alert_sensor ) ;
+        // console.info( alerts) ;
+        return litHtml.html `
     <div class="forecast clear" style="margin-top:  4px; margin-bottom: 4px;">
     ${alerts.map(alert => {
         alert[0]; let value = alert[1], show = true;
@@ -1518,126 +1515,126 @@ const renderAlert = (hass, alert_sensor, border) => {
     })}
     </div>
   `;
-    // return maxDays > 1 ? html`
-    //     <div class="forecast clear ${border ? "spacer" : ""}">
-    //       ${days.map(day => {
-    //   let icon: string, day_temp_low: number, day_temp_high: number, day_prec_probab: number, day_prec_intensity: number;
-    //   let date = new Date(forecastDate.setDate(forecastDate.getDate() + 1))
-    //     .toLocaleDateString(lang, {weekday: "short"});
-    //
-    //   if( icons && icons[day] && hass.states[icons[day][1]] )
-    //     icon = hass.states[icons[day][1]].state.toLowerCase() ;
-    //
-    //   if( temperature_low && temperature_low[day] && hass.states[temperature_low[day][1]] )
-    //     day_temp_low = numFormat(hass.states[temperature_low[day][1]].state, 0) ;
-    //   if( temperature_high && temperature_high[day] && hass.states[temperature_high[day][1]] )
-    //     day_temp_high = numFormat(hass.states[temperature_high[day][1]].state, 0) ;
-    //
-    //   if( precipitation_probability && precipitation_probability[day] && hass.states[precipitation_probability[day][1]] )
-    //     day_prec_probab = numFormat(hass.states[precipitation_probability[day][1]].state, 0) ;
-    //   if( precipitation_intensity && precipitation_intensity[day] && hass.states[precipitation_intensity[day][1]] )
-    //     day_prec_intensity = numFormat(hass.states[precipitation_intensity[day][1]].state, 0) ;
-    //
-    //   return html`
-    //         <div class="day ${day}">
-    //             <div class="dayname">${date}</div>
-    //             ${icon ? html`
-    //             <i class="icon" style="background: none, url('${getWeatherIcon(icon, iconsConfig, sun)}') no-repeat;
-    //                   background-size: contain"></i>
-    //             ` : ""}
-    //             ${_renderForecast(day_temp_low, '', day_temp_high, getUnit(hass,"temperature"))}
-    //             ${_renderForecast(day_prec_probab, '%', day_prec_intensity,
-    //     getUnit(hass,"precipitation") + '/h')}
-    //         </div>
-    //         `;
-    // })}
-    //     </div>
-    //   ` : html``;
-};
-function colorByPercent(value) {
-    //value from 0 to 1
-    let hue = ((1 - value) * 120).toString(10);
-    let tcolor = getContrastYIQ(HSLToHex(hue, 100, 50));
-    return { "color": tcolor, "bgcolor": ["hsl(", hue, ",100%,50%)"].join("") };
-}
-function getContrastYIQ(hexcolor) {
-    hexcolor = hexcolor.replace("#", "");
-    let r = parseInt(hexcolor.substr(0, 2), 16);
-    let g = parseInt(hexcolor.substr(2, 2), 16);
-    let b = parseInt(hexcolor.substr(4, 2), 16);
-    let yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-    return (yiq >= 128) ? 'black' : 'white';
-}
-function HSLToHex(h, s, l) {
-    s /= 100;
-    l /= 100;
-    let c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = l - c / 2, r = 0, g = 0, b = 0;
-    if (0 <= h && h < 60) {
-        r = c;
-        g = x;
-        b = 0;
+        // return maxDays > 1 ? html`
+        //     <div class="forecast clear ${border ? "spacer" : ""}">
+        //       ${days.map(day => {
+        //   let icon: string, day_temp_low: number, day_temp_high: number, day_prec_probab: number, day_prec_intensity: number;
+        //   let date = new Date(forecastDate.setDate(forecastDate.getDate() + 1))
+        //     .toLocaleDateString(lang, {weekday: "short"});
+        //
+        //   if( icons && icons[day] && hass.states[icons[day][1]] )
+        //     icon = hass.states[icons[day][1]].state.toLowerCase() ;
+        //
+        //   if( temperature_low && temperature_low[day] && hass.states[temperature_low[day][1]] )
+        //     day_temp_low = numFormat(hass.states[temperature_low[day][1]].state, 0) ;
+        //   if( temperature_high && temperature_high[day] && hass.states[temperature_high[day][1]] )
+        //     day_temp_high = numFormat(hass.states[temperature_high[day][1]].state, 0) ;
+        //
+        //   if( precipitation_probability && precipitation_probability[day] && hass.states[precipitation_probability[day][1]] )
+        //     day_prec_probab = numFormat(hass.states[precipitation_probability[day][1]].state, 0) ;
+        //   if( precipitation_intensity && precipitation_intensity[day] && hass.states[precipitation_intensity[day][1]] )
+        //     day_prec_intensity = numFormat(hass.states[precipitation_intensity[day][1]].state, 0) ;
+        //
+        //   return html`
+        //         <div class="day ${day}">
+        //             <div class="dayname">${date}</div>
+        //             ${icon ? html`
+        //             <i class="icon" style="background: none, url('${getWeatherIcon(icon, iconsConfig, sun)}') no-repeat;
+        //                   background-size: contain"></i>
+        //             ` : ""}
+        //             ${_renderForecast(day_temp_low, '', day_temp_high, getUnit(hass,"temperature"))}
+        //             ${_renderForecast(day_prec_probab, '%', day_prec_intensity,
+        //     getUnit(hass,"precipitation") + '/h')}
+        //         </div>
+        //         `;
+        // })}
+        //     </div>
+        //   ` : html``;
+    };
+    function colorByPercent(value) {
+        //value from 0 to 1
+        let hue = ((1 - value) * 120).toString(10);
+        let tcolor = getContrastYIQ(HSLToHex(hue, 100, 50));
+        return { "color": tcolor, "bgcolor": ["hsl(", hue, ",100%,50%)"].join("") };
     }
-    else if (60 <= h && h < 120) {
-        r = x;
-        g = c;
-        b = 0;
+    function getContrastYIQ(hexcolor) {
+        hexcolor = hexcolor.replace("#", "");
+        let r = parseInt(hexcolor.substr(0, 2), 16);
+        let g = parseInt(hexcolor.substr(2, 2), 16);
+        let b = parseInt(hexcolor.substr(4, 2), 16);
+        let yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        return (yiq >= 128) ? 'black' : 'white';
     }
-    else if (120 <= h && h < 180) {
-        r = 0;
-        g = c;
-        b = x;
+    function HSLToHex(h, s, l) {
+        s /= 100;
+        l /= 100;
+        let c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = l - c / 2, r = 0, g = 0, b = 0;
+        if (0 <= h && h < 60) {
+            r = c;
+            g = x;
+            b = 0;
+        }
+        else if (60 <= h && h < 120) {
+            r = x;
+            g = c;
+            b = 0;
+        }
+        else if (120 <= h && h < 180) {
+            r = 0;
+            g = c;
+            b = x;
+        }
+        else if (180 <= h && h < 240) {
+            r = 0;
+            g = x;
+            b = c;
+        }
+        else if (240 <= h && h < 300) {
+            r = x;
+            g = 0;
+            b = c;
+        }
+        else if (300 <= h && h < 360) {
+            r = c;
+            g = 0;
+            b = x;
+        }
+        // Having obtained RGB, convert channels to hex
+        let rs = Math.round((r + m) * 255).toString(16);
+        let gs = Math.round((g + m) * 255).toString(16);
+        let bs = Math.round((b + m) * 255).toString(16);
+        // Prepend 0s, if necessary
+        if (rs.length == 1)
+            rs = "0" + rs;
+        if (gs.length == 1)
+            gs = "0" + gs;
+        if (bs.length == 1)
+            bs = "0" + bs;
+        return "#" + rs + gs + bs;
     }
-    else if (180 <= h && h < 240) {
-        r = 0;
-        g = x;
-        b = c;
-    }
-    else if (240 <= h && h < 300) {
-        r = x;
-        g = 0;
-        b = c;
-    }
-    else if (300 <= h && h < 360) {
-        r = c;
-        g = 0;
-        b = x;
-    }
-    // Having obtained RGB, convert channels to hex
-    let rs = Math.round((r + m) * 255).toString(16);
-    let gs = Math.round((g + m) * 255).toString(16);
-    let bs = Math.round((b + m) * 255).toString(16);
-    // Prepend 0s, if necessary
-    if (rs.length == 1)
-        rs = "0" + rs;
-    if (gs.length == 1)
-        gs = "0" + gs;
-    if (bs.length == 1)
-        bs = "0" + bs;
-    return "#" + rs + gs + bs;
-}
 
-// @ts-ignore
-const renderSeaForecast = (hass, seaCfg, iconsConfig, lang, border) => {
-    let swell_directions = seaCfg.swell_direction
-        ? Object.entries(seaCfg.swell_direction) : undefined;
-    let swell_heights = seaCfg.swell_height
-        ? Object.entries(seaCfg.swell_height) : undefined;
-    let swell_periods = seaCfg.swell_period
-        ? Object.entries(seaCfg.swell_period) : undefined;
-    let wind_directions = seaCfg.wind_direction
-        ? Object.entries(seaCfg.wind_direction) : undefined;
-    let wind_speeds = seaCfg.wind_speed
-        ? Object.entries(seaCfg.wind_speed) : undefined;
-    let air_temperatures = seaCfg.air_temperature
-        ? Object.entries(seaCfg.air_temperature) : undefined;
-    let water_temperatures = seaCfg.water_temperature
-        ? Object.entries(seaCfg.water_temperature) : undefined;
-    let maxHours = Math.max(swell_directions ? swell_directions.length : 0, swell_heights ? swell_heights.length : 0, swell_periods ? swell_periods.length : 0);
-    let startHour = 0;
-    let hours = maxHours > 0 ?
-        Array(maxHours - startHour).fill(1, 0, maxHours - startHour).map(() => startHour++)
-        : Array();
-    return litElement.html `
+    // @ts-ignore
+    const renderSeaForecast = (hass, seaCfg, iconsConfig, lang, border) => {
+        let swell_directions = seaCfg.swell_direction
+            ? Object.entries(seaCfg.swell_direction) : undefined;
+        let swell_heights = seaCfg.swell_height
+            ? Object.entries(seaCfg.swell_height) : undefined;
+        let swell_periods = seaCfg.swell_period
+            ? Object.entries(seaCfg.swell_period) : undefined;
+        let wind_directions = seaCfg.wind_direction
+            ? Object.entries(seaCfg.wind_direction) : undefined;
+        let wind_speeds = seaCfg.wind_speed
+            ? Object.entries(seaCfg.wind_speed) : undefined;
+        let air_temperatures = seaCfg.air_temperature
+            ? Object.entries(seaCfg.air_temperature) : undefined;
+        let water_temperatures = seaCfg.water_temperature
+            ? Object.entries(seaCfg.water_temperature) : undefined;
+        let maxHours = Math.max(swell_directions ? swell_directions.length : 0, swell_heights ? swell_heights.length : 0, swell_periods ? swell_periods.length : 0);
+        let startHour = 0;
+        let hours = maxHours > 0 ?
+            Array(maxHours - startHour).fill(1, 0, maxHours - startHour).map(() => startHour++)
+            : Array();
+        return litElement.html `
     <div class="forecast clear ${border ? "spacer" : ""}">
       <div class="day">
         <div class="highTemp">
@@ -1684,186 +1681,186 @@ const renderSeaForecast = (hass, seaCfg, iconsConfig, lang, border) => {
       </div>           
     </div>
   `;
-};
+    };
 
-const hacsImagePath = "/local/community/ha-card-weather-conditions/icons";
-const manImagePath = "/local/ha-card-weather-conditions/icons";
-exports.hacsImagePathExist = false;
-exports.manImagePathExist = false;
-let logo = "%c WEATHER-CONDITION-CARD %c 1.9.9";
-let optConsoleParam1 = "color: white; background: green; font-weight: 700;";
-let optConsoleParam2 = "color: green; background: white; font-weight: 700;";
-let optConsoleParam3 = "color: black; background: white; font-weight: 700;";
-exports.numberFormat_0dec = null;
-exports.numberFormat_1dec = null;
-let globalImagePath;
-const UNDEFINED = "undefined";
-Object.defineProperty(Object.prototype, 'isSet', {
-    value: function (object, testIsBlank) {
-        let t1 = !(typeof object === UNDEFINED || null === object);
-        return (testIsBlank ? t1 && object.length > 0 : t1);
-    },
-    writable: true,
-    configurable: true,
-    enumerable: false
-});
-console.info(logo, optConsoleParam1, optConsoleParam2);
-let findImagePath = [imageExist(hacsImagePath + "/static/cloudy.svg"),
-    imageExist(manImagePath + "/static/cloudy.svg"),];
-Promise.all(findImagePath).then((testResults) => {
-    let hacsImages, manImages;
-    hacsImages = exports.hacsImagePathExist = testResults[0];
-    manImages = exports.manImagePathExist = testResults[1];
-    globalImagePath = (hacsImages ? hacsImagePath : manImages ? manImagePath : null);
-    let translPath = globalImagePath + '/../transl/';
-    let findTranslation = [
-        loadJSON(translPath + 'en.json'),
-        loadJSON(translPath + 'it.json'),
-        loadJSON(translPath + 'nl.json'),
-        loadJSON(translPath + 'es.json'),
-        loadJSON(translPath + 'de.json'),
-        loadJSON(translPath + 'fr.json'),
-        loadJSON(translPath + 'sr-latn.json'),
-        loadJSON(translPath + 'pt.json'),
-        loadJSON(translPath + 'da.json'),
-        loadJSON(translPath + 'no-NO.json')
-    ];
-    if (hacsImages)
-        console.info(logo + "%c use HACS path to retrieve icons.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
-    else if (manImages)
-        console.info(logo + "%c use www root path to retrieve icons.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
-    else
-        console.info(logo + "%c error setting right icons path.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
-    Promise.all(findTranslation).then((translations) => {
-        let HaCardWeatherConditions = class HaCardWeatherConditions extends litElement.LitElement {
-            constructor() {
-                super(...arguments);
-                this._iconsConfig = new class {
-                };
-                this._terms = new class {
-                };
-                this.invalidConfig = false;
-                this.numberElements = 0;
-                this._header = true;
-                this._name = '';
-                this._hasCurrent = false;
-                this._hasForecast = false;
-                this._hasMeteogram = false;
-                this._hasAirQuality = false;
-                this._hasPollen = false;
-                this._hasUv = false;
-                this._hasAlert = false;
-                this._hasSea = false;
-                this._displayTop = true;
-                this._displayCurrent = true;
-                this._displayForecast = true;
-                this._showSummary = true;
-                this._showPresent = true;
-                this._showUv = true;
-                this._showAirQuality = true;
-                this._showPollen = true;
-                this._showForecast = true;
-                this._showAlert = true;
-                this._showSea = true;
-            }
-            /**
-             *
-             * @param {CardConfig} config
-             */
-            setConfig(config) {
-                console.log({ card_config: config });
-                if (!config) {
-                    this.invalidConfig = true;
-                    throw new Error("Invalid configuration");
+    const hacsImagePath = "/local/community/ha-card-weather-conditions/icons";
+    const manImagePath = "/local/ha-card-weather-conditions/icons";
+    exports.hacsImagePathExist = false;
+    exports.manImagePathExist = false;
+    let logo = "%c WEATHER-CONDITION-CARD %c 1.9.9";
+    let optConsoleParam1 = "color: white; background: green; font-weight: 700;";
+    let optConsoleParam2 = "color: green; background: white; font-weight: 700;";
+    let optConsoleParam3 = "color: black; background: white; font-weight: 700;";
+    exports.numberFormat_0dec = null;
+    exports.numberFormat_1dec = null;
+    let globalImagePath;
+    const UNDEFINED = "undefined";
+    Object.defineProperty(Object.prototype, 'isSet', {
+        value: function (object, testIsBlank) {
+            let t1 = !(typeof object === UNDEFINED || null === object);
+            return (testIsBlank ? t1 && object.length > 0 : t1);
+        },
+        writable: true,
+        configurable: true,
+        enumerable: false
+    });
+    console.info(logo, optConsoleParam1, optConsoleParam2);
+    let findImagePath = [imageExist(hacsImagePath + "/static/cloudy.svg"),
+        imageExist(manImagePath + "/static/cloudy.svg"),];
+    Promise.all(findImagePath).then((testResults) => {
+        let hacsImages, manImages;
+        hacsImages = exports.hacsImagePathExist = testResults[0];
+        manImages = exports.manImagePathExist = testResults[1];
+        globalImagePath = (hacsImages ? hacsImagePath : manImages ? manImagePath : null);
+        let translPath = globalImagePath + '/../transl/';
+        let findTranslation = [
+            loadJSON(translPath + 'en.json'),
+            loadJSON(translPath + 'it.json'),
+            loadJSON(translPath + 'nl.json'),
+            loadJSON(translPath + 'es.json'),
+            loadJSON(translPath + 'de.json'),
+            loadJSON(translPath + 'fr.json'),
+            loadJSON(translPath + 'sr-latn.json'),
+            loadJSON(translPath + 'pt.json'),
+            loadJSON(translPath + 'da.json'),
+            loadJSON(translPath + 'no-NO.json')
+        ];
+        if (hacsImages)
+            console.info(logo + "%c use HACS path to retrieve icons.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
+        else if (manImages)
+            console.info(logo + "%c use www root path to retrieve icons.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
+        else
+            console.info(logo + "%c error setting right icons path.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
+        Promise.all(findTranslation).then((translations) => {
+            let HaCardWeatherConditions = class HaCardWeatherConditions extends litElement.LitElement {
+                constructor() {
+                    super(...arguments);
+                    this._iconsConfig = new class {
+                    };
+                    this._terms = new class {
+                    };
+                    this.invalidConfig = false;
+                    this.numberElements = 0;
+                    this._header = true;
+                    this._name = '';
+                    this._hasCurrent = false;
+                    this._hasForecast = false;
+                    this._hasMeteogram = false;
+                    this._hasAirQuality = false;
+                    this._hasPollen = false;
+                    this._hasUv = false;
+                    this._hasAlert = false;
+                    this._hasSea = false;
+                    this._displayTop = true;
+                    this._displayCurrent = true;
+                    this._displayForecast = true;
+                    this._showSummary = true;
+                    this._showPresent = true;
+                    this._showUv = true;
+                    this._showAirQuality = true;
+                    this._showPollen = true;
+                    this._showForecast = true;
+                    this._showAlert = true;
+                    this._showSea = true;
                 }
-                if (config.name && config.name.length > 0) {
-                    this._name = config.name;
-                }
-                if (config.language && config.language.length > 0) {
-                    this._language = config.language.toLowerCase();
-                }
-                else
-                    this._language = 'en';
-                let transls;
-                try {
-                    transls = JSON.parse(translations[cwcLocale[this._language]]);
-                    this._terms.windDirections = transls.cwcLocWindDirections;
-                    this._terms.words = transls.cwcTerms;
-                    console.info(logo + "%c card \"" + this._name + "\", locale is '" + this._language + "'.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
-                }
-                catch (e) {
-                    transls = JSON.parse(translations[cwcLocale['en']]);
-                    this._terms.windDirections = transls.cwcLocWindDirections;
-                    this._terms.words = transls.cwcTerms;
-                    console.info(logo + "%c card \"" + this._name + "\" unable to use '" + this._language + "' locale, set as default 'en'.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
-                }
-                exports.numberFormat_0dec = new Intl.NumberFormat(this._language, { maximumFractionDigits: 0 });
-                exports.numberFormat_1dec = new Intl.NumberFormat(this._language, { maximumFractionDigits: 1 });
-                if (undefined !== config.display) {
-                    this._displayTop = config.display.findIndex(item => 'top' === item.toLowerCase()) >= 0;
-                    this._displayCurrent = config.display.findIndex(item => 'current' === item.toLowerCase()) >= 0;
-                    this._displayForecast = config.display.findIndex(item => 'forecast' === item.toLowerCase()) >= 0;
-                }
-                this._hasCurrent = (!!config.weather) && (!!config.weather.current);
-                this._hasForecast = (!!config.weather) && (!!config.weather.forecast);
-                this._hasMeteogram = this._hasForecast && (!!config.weather.forecast.meteogram);
-                this._hasAirQuality = !!config.air_quality;
-                this._hasPollen = !!config.pollen && (!!config.pollen.tree || !!config.pollen.weed || !!config.pollen.grass);
-                this._hasUv = !!config.uv;
-                this._hasAlert = !!config.alert;
-                this._hasSea = !!config.sea;
-                this._iconsConfig.path = hacsImages ? hacsImagePath : manImages ? manImagePath : null;
-                // this._iconsConfig.iconType = config.animation ? "animated" : "static";
-                this._iconsConfig.iconType = config.animation ? "animated" : "static";
-                this._iconsConfig.iconsDay = cwcClimacellDayIcons;
-                this._iconsConfig.iconsNight = cwcClimacellNightIcons;
-                this._iconsConfig.icons_model = "climacell";
-                if ((!!config.weather) && (!!config.weather.icons_model))
-                    switch (config.weather.icons_model.toLowerCase()) {
-                        case 'darksky':
-                            this._iconsConfig.iconsDay = cwcDarkskyDayIcons;
-                            this._iconsConfig.iconsNight = cwcDarkskyNightIcons;
-                            this._iconsConfig.icons_model = "darksky";
-                            break;
-                        case 'openweathermap':
-                            this._iconsConfig.iconsDay = cwcOpenWeatherMapDayIcons;
-                            this._iconsConfig.iconsNight = cwcOpenWeatherMapNightIcons;
-                            this._iconsConfig.icons_model = "openweathermap";
-                            break;
-                        case 'buienradar':
-                            this._iconsConfig.iconsDay = cwcBuienradarDayIcons;
-                            this._iconsConfig.iconsNight = cwcBuienradarNightIcons;
-                            this._iconsConfig.icons_model = "buienradar";
-                            break;
-                        case 'defaulthass':
-                            this._iconsConfig.iconsDay = cwcDefaultHassDayIcons;
-                            this._iconsConfig.iconsNight = cwcDefaultHassNightIcons;
-                            this._iconsConfig.icons_model = "defaulthass";
-                            break;
+                /**
+                 *
+                 * @param {CardConfig} config
+                 */
+                setConfig(config) {
+                    console.log({ card_config: config });
+                    if (!config) {
+                        this.invalidConfig = true;
+                        throw new Error("Invalid configuration");
                     }
-                this._config = config;
-            }
-            /**
-             * get the current size of the card
-             * @return {Number}
-             */
-            getCardSize() {
-                return 1;
-            }
-            /**
-             *
-             * @returns {CSSResult}
-             */
-            static get styles() {
-                return litElement.css `${style}${styleSummary}${styleForecast}${styleMeter}${styleCamera}${styleNightAndDay}${cssTag_js.unsafeCSS(getSeaStyle(globalImagePath))}`;
-            }
-            /**
-             * generates the card HTML
-             * @return {TemplateResult}
-             */
-            render() {
-                if (this.invalidConfig)
-                    return litElement.html `
+                    if (config.name && config.name.length > 0) {
+                        this._name = config.name;
+                    }
+                    if (config.language && config.language.length > 0) {
+                        this._language = config.language.toLowerCase();
+                    }
+                    else
+                        this._language = 'en';
+                    let transls;
+                    try {
+                        transls = JSON.parse(translations[cwcLocale[this._language]]);
+                        this._terms.windDirections = transls.cwcLocWindDirections;
+                        this._terms.words = transls.cwcTerms;
+                        console.info(logo + "%c card \"" + this._name + "\", locale is '" + this._language + "'.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
+                    }
+                    catch (e) {
+                        transls = JSON.parse(translations[cwcLocale['en']]);
+                        this._terms.windDirections = transls.cwcLocWindDirections;
+                        this._terms.words = transls.cwcTerms;
+                        console.info(logo + "%c card \"" + this._name + "\" unable to use '" + this._language + "' locale, set as default 'en'.", optConsoleParam1, optConsoleParam2, optConsoleParam3);
+                    }
+                    exports.numberFormat_0dec = new Intl.NumberFormat(this._language, { maximumFractionDigits: 0 });
+                    exports.numberFormat_1dec = new Intl.NumberFormat(this._language, { maximumFractionDigits: 1 });
+                    if (undefined !== config.display) {
+                        this._displayTop = config.display.findIndex(item => 'top' === item.toLowerCase()) >= 0;
+                        this._displayCurrent = config.display.findIndex(item => 'current' === item.toLowerCase()) >= 0;
+                        this._displayForecast = config.display.findIndex(item => 'forecast' === item.toLowerCase()) >= 0;
+                    }
+                    this._hasCurrent = (!!config.weather) && (!!config.weather.current);
+                    this._hasForecast = (!!config.weather) && (!!config.weather.forecast);
+                    this._hasMeteogram = this._hasForecast && (!!config.weather.forecast.meteogram);
+                    this._hasAirQuality = !!config.air_quality;
+                    this._hasPollen = !!config.pollen && (!!config.pollen.tree || !!config.pollen.weed || !!config.pollen.grass);
+                    this._hasUv = !!config.uv;
+                    this._hasAlert = !!config.alert;
+                    this._hasSea = !!config.sea;
+                    this._iconsConfig.path = hacsImages ? hacsImagePath : manImages ? manImagePath : null;
+                    // this._iconsConfig.iconType = config.animation ? "animated" : "static";
+                    this._iconsConfig.iconType = config.animation ? "animated" : "static";
+                    this._iconsConfig.iconsDay = cwcClimacellDayIcons;
+                    this._iconsConfig.iconsNight = cwcClimacellNightIcons;
+                    this._iconsConfig.icons_model = "climacell";
+                    if ((!!config.weather) && (!!config.weather.icons_model))
+                        switch (config.weather.icons_model.toLowerCase()) {
+                            case 'darksky':
+                                this._iconsConfig.iconsDay = cwcDarkskyDayIcons;
+                                this._iconsConfig.iconsNight = cwcDarkskyNightIcons;
+                                this._iconsConfig.icons_model = "darksky";
+                                break;
+                            case 'openweathermap':
+                                this._iconsConfig.iconsDay = cwcOpenWeatherMapDayIcons;
+                                this._iconsConfig.iconsNight = cwcOpenWeatherMapNightIcons;
+                                this._iconsConfig.icons_model = "openweathermap";
+                                break;
+                            case 'buienradar':
+                                this._iconsConfig.iconsDay = cwcBuienradarDayIcons;
+                                this._iconsConfig.iconsNight = cwcBuienradarNightIcons;
+                                this._iconsConfig.icons_model = "buienradar";
+                                break;
+                            case 'defaulthass':
+                                this._iconsConfig.iconsDay = cwcDefaultHassDayIcons;
+                                this._iconsConfig.iconsNight = cwcDefaultHassNightIcons;
+                                this._iconsConfig.icons_model = "defaulthass";
+                                break;
+                        }
+                    this._config = config;
+                }
+                /**
+                 * get the current size of the card
+                 * @return {Number}
+                 */
+                getCardSize() {
+                    return 1;
+                }
+                /**
+                 *
+                 * @returns {CSSResult}
+                 */
+                static get styles() {
+                    return litElement.css `${style}${styleSummary}${styleForecast}${styleMeter}${styleCamera}${styleNightAndDay}${cssTag_js.unsafeCSS(getSeaStyle(globalImagePath))}`;
+                }
+                /**
+                 * generates the card HTML
+                 * @return {TemplateResult}
+                 */
+                render() {
+                    if (this.invalidConfig)
+                        return litElement.html `
             <ha-card class="ha-card-weather-conditions">
                 <div class='banner'>
                     <div class="header">ha-card-weather-conditions</div>
@@ -1873,135 +1870,135 @@ Promise.all(findImagePath).then((testResults) => {
                 </div>
             </ha-card>
         `;
-                else {
-                    return this._render();
+                    else {
+                        return this._render();
+                    }
                 }
-            }
-            /**
-             *
-             * @returns {TemplateResult}
-             * @private
-             */
-            _render() {
-                let _renderedSummary, _renderedPresent, _renderedUv, _renderedAirQuality, _renderedPollen, _renderedForecast, _renderedAlert, _renderedSea;
-                // let _renderSummury: boolean = false ;
-                let posix = 0;
-                let states = this.hass.states;
-                if (this._showSummary && this._hasCurrent) {
-                    let current = this._config.weather.current;
-                    if ((current.current_conditions && typeof states[current.current_conditions] !== undefined)
-                        || (current.temperature && typeof states[current.temperature] !== undefined)) {
-                        _renderedSummary = renderSummary(this.hass, this._config.weather.current, this._config.name, this._iconsConfig, this._terms);
-                        posix++;
+                /**
+                 *
+                 * @returns {TemplateResult}
+                 * @private
+                 */
+                _render() {
+                    let _renderedSummary, _renderedPresent, _renderedUv, _renderedAirQuality, _renderedPollen, _renderedForecast, _renderedAlert, _renderedSea;
+                    // let _renderSummury: boolean = false ;
+                    let posix = 0;
+                    let states = this.hass.states;
+                    if (this._showSummary && this._hasCurrent) {
+                        let current = this._config.weather.current;
+                        if ((current.current_conditions && typeof states[current.current_conditions] !== undefined)
+                            || (current.temperature && typeof states[current.temperature] !== undefined)) {
+                            _renderedSummary = renderSummary(this.hass, this._config.weather.current, this._config.name, this._iconsConfig, this._terms);
+                            posix++;
+                        }
+                        else
+                            _renderedSummary = "";
                     }
                     else
                         _renderedSummary = "";
-                }
-                else
-                    _renderedSummary = "";
-                // Test if render >Present<
-                if (this._showPresent && this._hasCurrent) {
-                    let current = this._config.weather.current;
-                    if ((current.sun && typeof states[current.sun] !== undefined)
-                        || (current.humidity && typeof states[current.humidity] !== undefined)
-                        || (current.pressure && typeof states[current.pressure] !== undefined)
-                        || (current.visibility && typeof states[current.visibility] !== undefined)
-                        || (current.wind_bearing && typeof states[current.wind_bearing] !== undefined)
-                        || (current.wind_speed && typeof states[current.wind_speed] !== undefined)) {
-                        _renderedPresent = renderPresent(this.hass, this._config.weather.current, this._config.weather.forecast, this._language, this._terms, posix > 0);
-                        posix++;
-                    }
-                    else {
-                        if (current.forecast && this._hasForecast) {
-                            let forecast = this._config.weather.forecast;
-                            if ((forecast.temperature_low && forecast.temperature_low.day_1 && typeof states[forecast.temperature_low.day_1] !== undefined)
-                                || (forecast.temperature_high && forecast.temperature_high.day_1 && typeof states[forecast.temperature_high.day_1] !== undefined)
-                                || (forecast.precipitation_intensity && forecast.precipitation_intensity.day_1 && typeof states[forecast.precipitation_intensity.day_1] !== undefined)
-                                || (forecast.precipitation_probability && forecast.precipitation_probability.day_1 && typeof states[forecast.precipitation_probability.day_1] !== undefined)) {
-                                _renderedPresent = renderPresent(this.hass, this._config.weather.current, this._config.weather.forecast, this._language, this._terms, posix > 0);
-                                posix++;
+                    // Test if render >Present<
+                    if (this._showPresent && this._hasCurrent) {
+                        let current = this._config.weather.current;
+                        if ((current.sun && typeof states[current.sun] !== undefined)
+                            || (current.humidity && typeof states[current.humidity] !== undefined)
+                            || (current.pressure && typeof states[current.pressure] !== undefined)
+                            || (current.visibility && typeof states[current.visibility] !== undefined)
+                            || (current.wind_bearing && typeof states[current.wind_bearing] !== undefined)
+                            || (current.wind_speed && typeof states[current.wind_speed] !== undefined)) {
+                            _renderedPresent = renderPresent(this.hass, this._config.weather.current, this._config.weather.forecast, this._language, this._terms, posix > 0);
+                            posix++;
+                        }
+                        else {
+                            if (current.forecast && this._hasForecast) {
+                                let forecast = this._config.weather.forecast;
+                                if ((forecast.temperature_low && forecast.temperature_low.day_1 && typeof states[forecast.temperature_low.day_1] !== undefined)
+                                    || (forecast.temperature_high && forecast.temperature_high.day_1 && typeof states[forecast.temperature_high.day_1] !== undefined)
+                                    || (forecast.precipitation_intensity && forecast.precipitation_intensity.day_1 && typeof states[forecast.precipitation_intensity.day_1] !== undefined)
+                                    || (forecast.precipitation_probability && forecast.precipitation_probability.day_1 && typeof states[forecast.precipitation_probability.day_1] !== undefined)) {
+                                    _renderedPresent = renderPresent(this.hass, this._config.weather.current, this._config.weather.forecast, this._language, this._terms, posix > 0);
+                                    posix++;
+                                }
+                                else
+                                    _renderedPresent = "";
                             }
                             else
                                 _renderedPresent = "";
                         }
-                        else
-                            _renderedPresent = "";
                     }
-                }
-                else
-                    _renderedPresent = "";
-                // Test AirQuality
-                if (this._showAirQuality && this._hasAirQuality) {
-                    let airQuality = this._config.air_quality;
-                    if ((airQuality.co && typeof states[airQuality.co] !== undefined)
-                        || (airQuality.epa_aqi && typeof states[airQuality.epa_aqi] !== undefined)
-                        || (airQuality.epa_health_concern && typeof states[airQuality.epa_health_concern] !== undefined)
-                        || (airQuality.no2 && typeof states[airQuality.no2] !== undefined)
-                        || (airQuality.o3 && typeof states[airQuality.o3] !== undefined)
-                        || (airQuality.pm10 && typeof states[airQuality.pm10] !== undefined)
-                        || (airQuality.pm25 && typeof states[airQuality.pm25] !== undefined)
-                        || (airQuality.so2 && typeof states[airQuality.so2] !== undefined)) {
-                        _renderedAirQuality = renderAirQualities(this.hass, this._config.air_quality, posix > 0);
-                        posix++;
+                    else
+                        _renderedPresent = "";
+                    // Test AirQuality
+                    if (this._showAirQuality && this._hasAirQuality) {
+                        let airQuality = this._config.air_quality;
+                        if ((airQuality.co && typeof states[airQuality.co] !== undefined)
+                            || (airQuality.epa_aqi && typeof states[airQuality.epa_aqi] !== undefined)
+                            || (airQuality.epa_health_concern && typeof states[airQuality.epa_health_concern] !== undefined)
+                            || (airQuality.no2 && typeof states[airQuality.no2] !== undefined)
+                            || (airQuality.o3 && typeof states[airQuality.o3] !== undefined)
+                            || (airQuality.pm10 && typeof states[airQuality.pm10] !== undefined)
+                            || (airQuality.pm25 && typeof states[airQuality.pm25] !== undefined)
+                            || (airQuality.so2 && typeof states[airQuality.so2] !== undefined)) {
+                            _renderedAirQuality = renderAirQualities(this.hass, this._config.air_quality, posix > 0);
+                            posix++;
+                        }
+                        else
+                            _renderedAirQuality = "";
                     }
                     else
                         _renderedAirQuality = "";
-                }
-                else
-                    _renderedAirQuality = "";
-                // Test uv
-                if (this._showUv && this._hasUv) {
-                    let uv = this._config.uv;
-                    if ((uv.protection_window && typeof states[uv.protection_window] !== undefined)
-                        || (uv.ozone_level && typeof states[uv.ozone_level] !== undefined)
-                        || (uv.uv_index && typeof states[uv.uv_index] !== undefined)
-                        || (uv.uv_level && typeof states[uv.uv_level] !== undefined)
-                        || (uv.max_uv_index && typeof states[uv.max_uv_index] !== undefined)) {
-                        _renderedUv = renderUv(this.hass, this._config.uv, posix > 0);
-                        posix++;
+                    // Test uv
+                    if (this._showUv && this._hasUv) {
+                        let uv = this._config.uv;
+                        if ((uv.protection_window && typeof states[uv.protection_window] !== undefined)
+                            || (uv.ozone_level && typeof states[uv.ozone_level] !== undefined)
+                            || (uv.uv_index && typeof states[uv.uv_index] !== undefined)
+                            || (uv.uv_level && typeof states[uv.uv_level] !== undefined)
+                            || (uv.max_uv_index && typeof states[uv.max_uv_index] !== undefined)) {
+                            _renderedUv = renderUv(this.hass, this._config.uv, posix > 0);
+                            posix++;
+                        }
+                        else
+                            _renderedUv = "";
                     }
                     else
                         _renderedUv = "";
-                }
-                else
-                    _renderedUv = "";
-                if (this._showPollen && this._hasPollen) {
-                    let pollen = this._config.pollen;
-                    if ((pollen.grass && pollen.grass.entity && typeof states[pollen.grass.entity] !== undefined)
-                        || (pollen.tree && pollen.tree.entity && typeof states[pollen.tree.entity] !== undefined)
-                        || (pollen.weed && pollen.weed.entity && typeof states[pollen.weed.entity] !== undefined)) {
-                        _renderedPollen = renderPollens(this.hass, this._config.pollen, posix > 0);
-                        posix++;
+                    if (this._showPollen && this._hasPollen) {
+                        let pollen = this._config.pollen;
+                        if ((pollen.grass && pollen.grass.entity && typeof states[pollen.grass.entity] !== undefined)
+                            || (pollen.tree && pollen.tree.entity && typeof states[pollen.tree.entity] !== undefined)
+                            || (pollen.weed && pollen.weed.entity && typeof states[pollen.weed.entity] !== undefined)) {
+                            _renderedPollen = renderPollens(this.hass, this._config.pollen, posix > 0);
+                            posix++;
+                        }
+                        else
+                            _renderedPollen = "";
                     }
                     else
                         _renderedPollen = "";
-                }
-                else
-                    _renderedPollen = "";
-                if (this._showForecast && this._hasForecast) {
-                    let forecast = this._config.weather.forecast;
-                    _renderedForecast = renderForecasts(this.hass, this._config.weather.current, forecast, this._iconsConfig, this._language, posix > 0);
-                    posix++;
-                }
-                else
-                    _renderedForecast = "";
-                // Test Alert
-                if (this._showAlert && this._hasAlert) {
-                    let alert = this._config.alert;
-                    _renderedAlert = renderAlert(this.hass, alert);
-                    posix++;
-                }
-                else
-                    _renderedAlert = "";
-                // Test Sea
-                if (this._showSea && this._hasSea) {
-                    let sea = this._config.sea;
-                    _renderedSea = renderSeaForecast(this.hass, sea, this._iconsConfig, this._language, posix > 0);
-                    posix++;
-                }
-                else
-                    _renderedSea = "";
-                return litElement.html `
+                    if (this._showForecast && this._hasForecast) {
+                        let forecast = this._config.weather.forecast;
+                        _renderedForecast = renderForecasts(this.hass, this._config.weather.current, forecast, this._iconsConfig, this._language, posix > 0);
+                        posix++;
+                    }
+                    else
+                        _renderedForecast = "";
+                    // Test Alert
+                    if (this._showAlert && this._hasAlert) {
+                        let alert = this._config.alert;
+                        _renderedAlert = renderAlert(this.hass, alert);
+                        posix++;
+                    }
+                    else
+                        _renderedAlert = "";
+                    // Test Sea
+                    if (this._showSea && this._hasSea) {
+                        let sea = this._config.sea;
+                        _renderedSea = renderSeaForecast(this.hass, sea, this._iconsConfig, this._language, posix > 0);
+                        posix++;
+                    }
+                    else
+                        _renderedSea = "";
+                    return litElement.html `
       ${""}
       
       <ha-card class="ha-card-weather-conditions ">
@@ -2021,44 +2018,48 @@ Promise.all(findImagePath).then((testResults) => {
         </div>
       </ha-card>
     `;
-            }
-            /**
-             *
-             * @param hass
-             * @param camId
-             */
-            renderCamera(hass, camId) {
-                let camera = hass.states[camId];
-                let entity_picture = camera ? camera.attributes.entity_picture : undefined;
-                return entity_picture ? litElement.html `
+                }
+                /**
+                 *
+                 * @param hass
+                 * @param camId
+                 */
+                renderCamera(hass, camId) {
+                    let camera = hass.states[camId];
+                    let entity_picture = camera ? camera.attributes.entity_picture : undefined;
+                    return entity_picture ? litElement.html `
         <div @click=${e => this.handlePopup(e, camId)} class="camera-container">
           <div class="camera-image">
             <img src="${entity_picture}" alt="${camera.attributes.friendly_name}"/>
           </div>
         </div>
       ` : litElement.html ``;
-            }
-            /**
-             *
-             * @param e
-             * @param entityId
-             */
-            handlePopup(e, entityId) {
-                e.stopPropagation();
-                let ne = new Event('hass-more-info', { composed: true });
-                // @ts-ignore
-                ne.detail = { entityId };
-                this.dispatchEvent(ne);
-            }
-        };
-        __decorate([
-            litElement.property()
-        ], HaCardWeatherConditions.prototype, "hass", void 0);
-        __decorate([
-            litElement.property()
-        ], HaCardWeatherConditions.prototype, "_config", void 0);
-        HaCardWeatherConditions = __decorate([
-            litElement.customElement("ha-card-weather-conditions")
-        ], HaCardWeatherConditions);
+                }
+                /**
+                 *
+                 * @param e
+                 * @param entityId
+                 */
+                handlePopup(e, entityId) {
+                    e.stopPropagation();
+                    let ne = new Event('hass-more-info', { composed: true });
+                    // @ts-ignore
+                    ne.detail = { entityId };
+                    this.dispatchEvent(ne);
+                }
+            };
+            __decorate([
+                litElement.property()
+            ], HaCardWeatherConditions.prototype, "hass", void 0);
+            __decorate([
+                litElement.property()
+            ], HaCardWeatherConditions.prototype, "_config", void 0);
+            HaCardWeatherConditions = __decorate([
+                litElement.customElement("ha-card-weather-conditions")
+            ], HaCardWeatherConditions);
+        });
     });
-});
+
+    return exports;
+
+})({}, litElement, cssTag_js, litHtml);
