@@ -772,7 +772,7 @@ table.synoptic td {
     };
     const cwcDefaultHassNightIcons = Object.assign(Object.assign({}, cwcDefaultHassDayIcons), { "clear-night": "clear-night" });
 
-    let cwcLocale = { en: 0, it: 1, nl: 2, es: 3, de: 4, fr: 5, "sr-latn": 6, pt: 7, da: 8, "no-no": 9 };
+    let cwcLocale = { en: 0, it: 1, nl: 2, es: 3, de: 4, fr: 5, "sr-latn": 6, pt: 7, da: 8, "no-no": 9, ru: 10 };
     // export let cwcLocWindDirections = {
     //   'N': ['N', 'N', 'N', 'N', 'N', 'N', 'S'],
     //   'NNE': ['NNE', 'NNE', 'NNO', 'NNE', 'NNO', 'NNE', 'SSI'],
